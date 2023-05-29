@@ -1,8 +1,6 @@
 name: "Deploy staging"
 
 on:
-  push:
-    branches: [ "staging" ]
   workflow_run:
     workflows: [ "Laravel" ]
     types:
