@@ -1,16 +1,15 @@
 name: "Deploy staging"
 
 on:
-  push:
-    branches: [ "staging" ]
-  pull_request:
-    branches: [ "staging" ]
+  workflow_run:
+    workflows: [ "Laravel" ]
+    types:
+      - completed
 
 jobs:
   depoy-staging:
     runs-on: ubuntu-latest
-    environment: staging
     steps:
-    - name: Deploy
+    - name: Deploy staging
       if: github.ref == 'refs/heads/staging'
-      run: curl ${{ secrets.ENVOYER_HOOK }}?sha=${{ github.sha }}
+      run: curl ${{ secrets.ENVOYER_HOOK_STAGING }}?sha=${{ github.sha }}
