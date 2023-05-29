@@ -17,7 +17,7 @@ jobs:
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
     - name: Setup configuration
-      run: composer config http-base.nova.laravel.com menno@made-foryou.nl ${{ secrets.NOVA_LICENSE }}
+      run: composer config http-basic.nova.laravel.com menno@made-foryou.nl ${{ secrets.NOVA_LICENSE }}
     - name: Install Dependencies
       run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
     - name: Generate key
