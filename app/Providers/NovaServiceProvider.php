@@ -1,11 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Providers;
 
+use App\Nova\Dashboards\Main;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
 
+/**
+ * ## Nova service provider
+ * ---
+ */
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {
     /**
@@ -35,9 +42,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function gate(): void
     {
         Gate::define('viewNova', function ($user) {
-            return in_array($user->email, [
-                'menno@made-foryou.nl',
-            ]);
+            return $user->email == 'menno@made-foryou.nl';
         });
     }
 
@@ -47,7 +52,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function dashboards(): array
     {
         return [
-            new \App\Nova\Dashboards\Main,
+            new Main(),
         ];
     }
 
@@ -56,16 +61,18 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      */
     public function tools(): array
     {
-        return [];
+        return [
+            ...parent::tools(),
+        ];
     }
 
     /**
      * Register any application services.
-     *
-     * @return void
      */
-    public function register()
+    public function register(): void
     {
+        parent::register();
+
         //
     }
 }
