@@ -1,21 +1,30 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Nova\Dashboards;
 
-use Laravel\Nova\Cards\Help;
 use Laravel\Nova\Dashboards\Main as Dashboard;
 
+/**
+ * # Dashboard
+ * ---
+ */
 class Main extends Dashboard
 {
     /**
-     * Get the cards for the dashboard.
-     *
-     * @return array
+     * Get the displayable name of the dashboard.
      */
-    public function cards()
+    public function name(): string
     {
-        return [
-            new Help,
-        ];
+        return 'Dashboard';
+    }
+
+    /**
+     * Get the cards for the dashboard.
+     */
+    public function cards(): array
+    {
+        return parent::cards();
     }
 }
