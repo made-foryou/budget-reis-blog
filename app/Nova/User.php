@@ -1,8 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Nova;
 
-use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
 use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\ID;
@@ -10,6 +11,10 @@ use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
+/**
+ * ## User resource
+ * ---
+ */
 class User extends Resource
 {
     /**
@@ -17,7 +22,7 @@ class User extends Resource
      *
      * @var class-string<\App\Models\User>
      */
-    public static $model = \App\Models\User::class;
+    public static string $model = \App\Models\User::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -35,12 +40,12 @@ class User extends Resource
         'id', 'name', 'email',
     ];
 
+    public static $group = 'Management';
+
     /**
      * Get the fields displayed by the resource.
-     *
-     * @return array
      */
-    public function fields(NovaRequest $request)
+    public function fields(NovaRequest $request): array
     {
         return [
             ID::make()->sortable(),
@@ -66,41 +71,49 @@ class User extends Resource
 
     /**
      * Get the cards available for the request.
-     *
-     * @return array
      */
-    public function cards(NovaRequest $request)
+    public function cards(NovaRequest $request): array
     {
         return [];
     }
 
     /**
      * Get the filters available for the resource.
-     *
-     * @return array
      */
-    public function filters(NovaRequest $request)
+    public function filters(NovaRequest $request): array
     {
         return [];
     }
 
     /**
      * Get the lenses available for the resource.
-     *
-     * @return array
      */
-    public function lenses(NovaRequest $request)
+    public function lenses(NovaRequest $request): array
     {
         return [];
     }
 
     /**
      * Get the actions available for the resource.
-     *
-     * @return array
      */
-    public function actions(NovaRequest $request)
+    public function actions(NovaRequest $request): array
     {
         return [];
+    }
+
+    /**
+     * Get the displayable label of the resource.
+     */
+    public static function label(): string
+    {
+        return __('Gebruikers');
+    }
+
+    /**
+     * Get the displayable singular label of the resource.
+     */
+    public static function singularLabel(): string
+    {
+        return __('Gebruiker');
     }
 }
