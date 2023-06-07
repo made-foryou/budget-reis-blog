@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Shared\Models;
 
+use Database\Factories\UserFactory;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -21,6 +22,8 @@ use Laravel\Sanctum\HasApiTokens;
  * @property string $remember_token
  * @property-read Carbon $created_at
  * @property-read Carbon $updated_at
+ *
+ * @method static UserFactory factory($count = null, $state = [])
  */
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -58,4 +61,12 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Create a new factory instance for the model.
+     */
+    protected static function newFactory(): UserFactory
+    {
+        return UserFactory::new();
+    }
 }
