@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Nova;
 
+use Domain\Shared\Models\User as UserModel;
 use Illuminate\Validation\Rules;
 use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\ID;
@@ -20,9 +21,9 @@ class User extends Resource
     /**
      * The model the resource corresponds to.
      *
-     * @var class-string<\App\Models\User>
+     * @var class-string<UserModel>
      */
-    public static string $model = \App\Models\User::class;
+    public static string $model = UserModel::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -40,6 +41,11 @@ class User extends Resource
         'id', 'name', 'email',
     ];
 
+    /**
+     * The logical group associated with the resource.
+     *
+     * @var string
+     */
     public static $group = 'Management';
 
     /**
