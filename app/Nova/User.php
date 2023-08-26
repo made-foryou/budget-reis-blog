@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Nova;
 
-use Domain\Shared\Models\User as UserModel;
-use Illuminate\Validation\Rules;
-use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\Text;
+use App\Models\User as UserModel;
+use Illuminate\Validation\Rules;
+use Laravel\Nova\Fields\Password;
+use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 /**

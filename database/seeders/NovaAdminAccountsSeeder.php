@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use Domain\Shared\Models\User;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class NovaAdminAccountsSeeder extends Seeder

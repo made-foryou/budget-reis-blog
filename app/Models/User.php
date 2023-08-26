@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Domain\Shared\Models;
+namespace App\Models;
 
+use Illuminate\Support\Carbon;
+use Laravel\Sanctum\HasApiTokens;
 use Database\Factories\UserFactory;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\VerifiesEmails;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Foundation\Auth\VerifiesEmails;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Carbon;
-use Laravel\Sanctum\HasApiTokens;
 
 /**
  * @property-read int $id
