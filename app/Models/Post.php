@@ -27,6 +27,7 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model implements GeneratesASlug
 {
     use HasFactory;
+    use GeneratesSlug;
 
     /**
      * @var string[]
@@ -49,31 +50,6 @@ class Post extends Model implements GeneratesASlug
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
-    }
-
-    public function getSlugValue(): string
-    {
-        if ( $this->isDirty(attributes: 'slug') ) {
-            return $this->getAttribute(key: 'slug');
-        } elseif ( $this->isDirty(attributes: 'title') ) {
-            return $this->getAttribute(key: 'title');
-        }
-        return $this->getAttribbute(key: 'title');
-    }
-
-    public function getSlugKey(): string
-    {
-        return 'slug';
-    }
-
-    public function needsASlugGenerated(): bool
-    {
-        return ( ! $this->exists
-            || (
-                $this->isDirty('title')
-                || $this->isDirty('slug')
-            )
-        );
     }
 
     public function newEloquentBuilder($query): PostQueryBuilder
