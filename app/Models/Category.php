@@ -26,8 +26,6 @@ class Category extends Model implements GeneratesASlug
     use SoftDeletes;
     use GeneratesSlug;
 
-    public string $valueKey = 'name';
-
     protected $fillable = [
         'name',
         'slug',
@@ -54,25 +52,8 @@ class Category extends Model implements GeneratesASlug
         return $this->hasMany(Category::class);
     }
 
-    public function needsASlugGenerated(): bool
+    public function getValueKey(): string
     {
-        return ( ! $this->exists
-            || (
-                $this->isDirty('name')
-                || $this->isDirty('slug')
-            )
-        );
-    }
-
-    public function getSlugValue(): string
-    {
-        return $this->getAttribute(
-            key: ($this->isDirty('slug')) ? 'slug' : 'name'
-        );
-    }
-
-    public function getSlugKey(): string
-    {
-        return 'slug';
+        return 'name';
     }
 }
