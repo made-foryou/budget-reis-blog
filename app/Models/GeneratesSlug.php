@@ -36,6 +36,6 @@ trait GeneratesSlug
 
     public function getValueKey(): string
     {
-        return $this->title;
+        return $this->valueKey;
     }
 }
