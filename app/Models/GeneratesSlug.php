@@ -15,7 +15,7 @@ trait GeneratesSlug
     public function getSlugValue(): string
     {
         return $this->getAttribute(
-            key: ($this->isDirty($this->slugKey)) ? $this->slugKey : $this->valueKey
+            key: ($this->isDirty($this->slugKey)) ? $this->slugKey : $this->getValueKey()
         );
     }
 
@@ -28,9 +28,14 @@ trait GeneratesSlug
     {
         return ( ! $this->exists
             || (
-                $this->isDirty($this->valueKey)
+                $this->isDirty($this->getValueKey())
                 || $this->isDirty($this->slugKey)
             )
         );
+    }
+
+    public function getValueKey(): string
+    {
+        return $this->title;
     }
 }
