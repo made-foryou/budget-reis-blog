@@ -27,6 +27,13 @@
                     </button>
                 </div>
                 <div class="hidden lg:flex lg:gap-x-12">
+                    @foreach($menu['categories'] as $category)
+                        <a href="{{ $category->slug }}"
+                           class="text-sm font-semibold leading-6 text-slate-900
+                                  hover:text-teal-500 transition-colors duration-100 ease-in-out">
+                            {{ $category->name }}
+                        </a>
+                    @endforeach
                     <a href="#" class="text-sm font-semibold leading-6 text-slate-900 hover:text-teal-500 transition-colors duration-100 ease-in-out">Product</a>
                     <a href="#" class="text-sm font-semibold leading-6 text-slate-900 hover:text-teal-500 transition-colors duration-100 ease-in-out">Features</a>
                     <a href="#" class="text-sm font-semibold leading-6 text-slate-900 hover:text-teal-500 transition-colors duration-100 ease-in-out">Marketplace</a>

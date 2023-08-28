@@ -28,4 +28,18 @@ class CategoryQueryBuilderTest extends TestCase
             actual: $query->getBindings(),
         );
     }
+
+    /** @test */
+    public function it_can_check_for_first_level_categories()
+    {
+        $query = Category::query()->firstLevel();
+        $this->assertEquals(
+            expected: 'select * from "categories" where "category_id" is null and "categories"."deleted_at" is null',
+            actual: $query->toSql(),
+        );
+        $this->assertEquals(
+            expected: [],
+            actual: $query->getBindings(),
+        );
+    }
 }

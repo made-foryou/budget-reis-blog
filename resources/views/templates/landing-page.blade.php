@@ -1,4 +1,6 @@
-@extends('layouts.main')
+@extends('layouts.main', [
+    'menu' => $model['menu'],
+])
 
 @section('content')
     <div class="h-[80px] bg-white"></div>

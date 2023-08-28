@@ -10,8 +10,13 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class CategoryQueryBuilder extends Builder
 {
+    public function firstLevel(): CategoryQueryBuilder
+    {
+        return $this->whereNull(columns: 'category_id');
+    }
+
     public function shownInMenu(): CategoryQueryBuilder
     {
-        return $this->where('is_visible', true);
+        return $this->where(column: 'is_visible', operator: '=', value: true);
     }
 }

@@ -1,6 +1,8 @@
 <?php
 
+use App\View\Models\MenuViewModel;
 use Illuminate\Support\Facades\Route;
+use App\View\Models\LandingPageViewModel;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +16,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('templates.landing-page');
+    return new LandingPageViewModel();
 });
