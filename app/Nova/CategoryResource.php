@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Slug;
 use Laravel\Nova\Fields\HasMany;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Fields\BelongsTo;
 
@@ -40,6 +41,9 @@ class CategoryResource extends Resource
             Textarea::make('Omschrijving', 'description')
                 ->sortable()
                 ->rules('required'),
+
+            Boolean::make('Zichtbaar?', 'is_visible')
+                ->help('Is de categorie zichtbaar op de website?'),
 
             BelongsTo::make('Category', 'category', CategoryResource::class)
                 ->nullable(),
