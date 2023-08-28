@@ -45,6 +45,8 @@ class CategoryResource extends Resource
                 ->nullable(),
 
             HasMany::make('Categories', 'categories', CategoryResource::class),
+
+            HasMany::make('Berichten', 'posts', PostResource::class),
         ];
     }
 

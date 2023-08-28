@@ -16,10 +16,12 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $title
  * @property string $slug
  * @property-read int $user_id
+ * @property-read int|null $category_id
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property Carbon|null $deleted_at
  * @property-read User $user
+ * @property-read Category $category
  *
  * @method static PostFactory factory($count = null, $state = [])
  * @method static PostQueryBuilder query()
@@ -50,6 +52,11 @@ class Post extends Model implements GeneratesASlug
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(Category::class);
     }
 
     public function newEloquentBuilder($query): PostQueryBuilder

@@ -64,6 +64,8 @@ class PostResource extends Resource
             Slug::make(name: 'Slug', attribute: 'slug')->from('title'),
 
             BelongsTo::make('Auteur', 'user', 'App\Nova\User'),
+
+            BelongsTo::make('Categorie', 'category', 'App\Nova\CategoryResource'),
         ];
     }
 

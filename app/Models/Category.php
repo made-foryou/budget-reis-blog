@@ -20,6 +20,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property-read Carbon|null $deleted_at
  * @property-read Category|null $category
  * @property-read Collection<Category> $categories
+ * @property-read Collection<Post> $posts
  */
 class Category extends Model implements GeneratesASlug
 {
@@ -50,6 +51,11 @@ class Category extends Model implements GeneratesASlug
     public function categories(): HasMany
     {
         return $this->hasMany(Category::class);
+    }
+
+    public function posts(): HasMany
+    {
+        return $this->hasMany(Post::class);
     }
 
     public function getValueKey(): string
