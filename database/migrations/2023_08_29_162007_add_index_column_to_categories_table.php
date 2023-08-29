@@ -11,6 +11,9 @@ return new class extends Migration {
             $table->integer('index')
                 ->after('is_visible');
         });
+
+        // Set default sort order (just copy ID to sort order)
+        DB::statement('UPDATE categories SET `categories`.`index` = `categories`.`id`');
     }
 
     public function down(): void
