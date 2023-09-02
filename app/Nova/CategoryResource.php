@@ -11,9 +11,12 @@ use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Fields\BelongsTo;
+use Outl1ne\NovaSortable\Traits\HasSortableRows;
 
 class CategoryResource extends Resource
 {
+    use HasSortableRows;
+
     public static string $model = Category::class;
 
     public static $title = 'name';
