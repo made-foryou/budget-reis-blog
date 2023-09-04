@@ -4,6 +4,7 @@ namespace App\Listeners;
 
 use App\Events\SavingModel;
 use Illuminate\Support\Str;
+use App\Models\GeneratesASlug;
 
 class GenerateSlug
 {
@@ -12,6 +13,10 @@ class GenerateSlug
      */
     public function handle(SavingModel $event): void
     {
+        if (! $event->model instanceof GeneratesASlug) {
+            return;
+        }
+
         if (! $event->model->needsASlugGenerated()) {
             return;
         }

@@ -26,10 +26,11 @@ use Illuminate\Database\Eloquent\Model;
  * @method static PostFactory factory($count = null, $state = [])
  * @method static PostQueryBuilder query()
  */
-class Post extends Model implements GeneratesASlug
+class Post extends Model implements GeneratesASlug, Routeable
 {
     use HasFactory;
     use GeneratesSlug;
+    use HasRoute;
 
     /**
      * @var string[]
@@ -62,5 +63,16 @@ class Post extends Model implements GeneratesASlug
     public function newEloquentBuilder($query): PostQueryBuilder
     {
         return new PostQueryBuilder($query);
+    }
+
+    public function getRoute(): string
+    {
+        $route = '';
+
+        if ($this->category !== null) {
+            $route = $this->category->getRoute();
+        }
+
+        return $route .'/'. $this->slug;
     }
 }

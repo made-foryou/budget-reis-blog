@@ -19,6 +19,6 @@ class SavingModel
     /**
      * Create a new event instance.
      */
-    public function __construct(public readonly GeneratesASlug & Model $model)
+    public function __construct(public readonly Model $model)
     {}
 }

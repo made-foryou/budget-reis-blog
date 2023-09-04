@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
@@ -19,12 +20,17 @@ class Route extends Model
 {
     use HasFactory;
 
-    protected array $fillable = [
+    protected $fillable = [
         'route',
     ];
 
-    protected array $casts = [
+    protected $casts = [
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
+
+    public function routeable(): MorphTo
+    {
+        return $this->morphTo('routeable');
+    }
 }
