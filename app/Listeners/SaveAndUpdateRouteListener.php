@@ -23,6 +23,10 @@ class SaveAndUpdateRouteListener
             $route->routeable()->associate($event->model);
             $route->save();
         } else {
+            if (! $event->model->isDirty('slug')) {
+                return;
+            }
+
             $event->model->route->route = $event->model->getRoute();
             $event->model->route->save();
         }
