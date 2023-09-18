@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use App\QueryBuilders\RouteQueryBuilder;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -15,6 +16,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property-read Carbon $updated_at
  *
  * @property string $route
+ *
+ * @method static RouteQueryBuilder query()
  */
 class Route extends Model
 {
@@ -32,5 +35,10 @@ class Route extends Model
     public function routeable(): MorphTo
     {
         return $this->morphTo('routeable');
+    }
+
+    public function newEloquentBuilder($query): RouteQueryBuilder
+    {
+        return new RouteQueryBuilder($query);
     }
 }
