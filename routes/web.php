@@ -1,8 +1,13 @@
 <?php
 
+use App\Data\RouteData;
+use App\Models\Category;
+use App\Enums\RouteType;
 use App\View\Models\MenuViewModel;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
 use App\View\Models\LandingPageViewModel;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,3 +23,39 @@ use App\View\Models\LandingPageViewModel;
 Route::get('/', function () {
     return new LandingPageViewModel();
 });
+
+try {
+    $contents = Storage::get('caches/route-cache.json');
+
+    $routes = json_decode($contents, true);
+} catch (Exception $e) {
+    abort(404);
+}
+
+$routes = collect($routes)->map(
+    fn (array $data) => new RouteData(
+        route: $data['route'],
+        type: RouteType::fromClass($data['routeable_type']),
+        id: $data['routeable_id'],
+    )
+);
+
+$routes->each(
+     function (RouteData $route) {
+        request()->merge(['route' => $route->toArray()]);
+
+        return match ($route->type) {
+            RouteType::PAGE => throw new \Exception('To be implemented'),
+            RouteType::CATEGORY => Route::get(
+                uri: $route->route,
+                action: CategoryController::class,
+            ),
+            RouteType::POST => Route::get(
+                uri: $route->route,
+                action: PostController::class,
+            ),
+        };
+    }
+);
+
+
