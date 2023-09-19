@@ -1,9 +1,7 @@
 <?php
 
 use App\Data\RouteData;
-use App\Models\Category;
 use App\Enums\RouteType;
-use App\View\Models\MenuViewModel;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\View\Models\LandingPageViewModel;
@@ -42,18 +40,16 @@ $routes = collect($routes)->map(
 
 $routes->each(
      function (RouteData $route) {
-        request()->merge(['route' => $route->toArray()]);
-
         return match ($route->type) {
             RouteType::PAGE => throw new \Exception('To be implemented'),
             RouteType::CATEGORY => Route::get(
                 uri: $route->route,
                 action: CategoryController::class,
-            ),
+            )->name($route->type->value.'.'.$route->id),
             RouteType::POST => Route::get(
                 uri: $route->route,
                 action: PostController::class,
-            ),
+            )->name($route->type->value.'.'.$route->id),
         };
     }
 );
