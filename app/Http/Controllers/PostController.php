@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Request;
+use App\View\Models\PostViewModel;
+use App\Http\Requests\RouteableRequest;
 
 class PostController extends Controller
 {
-    public function __invoke(Request $request)
+    public function __invoke(RouteableRequest $request): PostViewModel
     {
-        return 'post!!';
+        return new PostViewModel($request->getModel());
     }
 }
