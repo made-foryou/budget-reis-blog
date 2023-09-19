@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Events\SavingModel;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Model;

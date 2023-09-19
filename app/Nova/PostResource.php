@@ -2,8 +2,9 @@
 
 namespace App\Nova;
 
-use Illuminate\Http\Request;
+use App\Nova\RouteResource;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\MorphOne;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Slug;
 use Laravel\Nova\Fields\BelongsTo;
@@ -52,7 +53,7 @@ class PostResource extends Resource
     /**
      * Get the fields displayed by the resource.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param  NovaRequest  $request
      * @return array
      */
     public function fields(NovaRequest $request): array
@@ -66,6 +67,8 @@ class PostResource extends Resource
             BelongsTo::make('Auteur', 'user', 'App\Nova\User'),
 
             BelongsTo::make('Categorie', 'category', 'App\Nova\CategoryResource'),
+
+            MorphOne::make('Route', 'route', RouteResource::class),
         ];
     }
 

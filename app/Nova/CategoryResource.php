@@ -3,8 +3,10 @@
 namespace App\Nova;
 
 use App\Models\Category;
+use App\Nova\RouteResource;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\MorphOne;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Slug;
 use Laravel\Nova\Fields\HasMany;
@@ -47,6 +49,8 @@ class CategoryResource extends Resource
 
             BelongsTo::make('Category', 'category', CategoryResource::class)
                 ->nullable(),
+
+            MorphOne::make('Route', 'route', RouteResource::class),
 
             HasMany::make('Categories', 'categories', CategoryResource::class),
 
