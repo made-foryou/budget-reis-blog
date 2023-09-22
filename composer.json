@@ -8,10 +8,6 @@
         {
             "type": "composer",
             "url": "https://nova.laravel.com"
-        },
-        {
-            "type": "path",
-            "url": "../mennotempelaar/nova-sortable"
         }
     ],
     "require": {
@@ -23,7 +19,7 @@
         "laravel/sanctum": "^3.2",
         "laravel/scout": "^10.2",
         "laravel/tinker": "^2.8",
-        "mennotempelaar/nova-sortable": "dev-main"
+        "outl1ne/nova-sortable": "^3.4"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

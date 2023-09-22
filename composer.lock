@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ae031f5e4ec75686837e11b615498bbd",
+    "content-hash": "1b4b3891064b659441e38a844108b856",
     "packages": [
         {
             "name": "brick/math",
@@ -2585,48 +2585,6 @@
             "time": "2022-04-17T13:12:02+00:00"
         },
         {
-            "name": "mennotempelaar/nova-sortable",
-            "version": "dev-main",
-            "dist": {
-                "type": "path",
-                "url": "../mennotempelaar/nova-sortable",
-                "reference": "8c622474c9e19018eda3bf5be7186c1fd8c78dc6"
-            },
-            "require": {
-                "laravel/nova": "^4.27.12",
-                "outl1ne/nova-translations-loader": "^5.0",
-                "php": ">=8.0",
-                "spatie/eloquent-sortable": "^3.10.0|^4.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Outl1ne\\NovaSortable\\ToolServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Outl1ne\\NovaSortable\\": "src/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "description": "This Laravel Nova package allows you to reorder models in a Nova resource's index view using drag & drop.",
-            "keywords": [
-                "eloquent-sortable",
-                "laravel",
-                "nova",
-                "optimistdigital",
-                "outl1ne"
-            ],
-            "transport-options": {
-                "relative": true
-            }
-        },
-        {
             "name": "monolog/monolog",
             "version": "3.3.1",
             "source": {
@@ -3212,6 +3170,63 @@
                 }
             ],
             "time": "2023-05-24T09:26:05+00:00"
+        },
+        {
+            "name": "outl1ne/nova-sortable",
+            "version": "3.4.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/outl1ne/nova-sortable.git",
+                "reference": "118a04b9f8805edd5af77b680fb694074051f77c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/outl1ne/nova-sortable/zipball/118a04b9f8805edd5af77b680fb694074051f77c",
+                "reference": "118a04b9f8805edd5af77b680fb694074051f77c",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/nova": "^4.24.0",
+                "outl1ne/nova-translations-loader": "^5.0",
+                "php": ">=8.0",
+                "spatie/eloquent-sortable": "^3.10.0|^4.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Outl1ne\\NovaSortable\\ToolServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Outl1ne\\NovaSortable\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "This Laravel Nova package allows you to reorder models in a Nova resource's index view using drag & drop.",
+            "keywords": [
+                "eloquent-sortable",
+                "laravel",
+                "nova",
+                "optimistdigital",
+                "outl1ne"
+            ],
+            "support": {
+                "issues": "https://github.com/outl1ne/nova-sortable/issues",
+                "source": "https://github.com/outl1ne/nova-sortable/tree/3.4.6"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/outl1ne",
+                    "type": "github"
+                }
+            ],
+            "time": "2023-09-13T13:21:43+00:00"
         },
         {
             "name": "outl1ne/nova-translations-loader",
@@ -9306,5 +9321,5 @@
         "php": "^8.2"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }
