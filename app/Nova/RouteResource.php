@@ -3,6 +3,8 @@
 namespace App\Nova;
 
 use App\Models\Route;
+use Laravel\Nova\Fields\Field;
+use Laravel\Nova\Fields\MorphTo;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
@@ -33,20 +35,27 @@ class RouteResource extends Resource
         'id', 'route',
     ];
 
+    public static $group = 'Links';
+
     /**
      * Get the fields displayed by the resource.
      *
      * @param  NovaRequest  $request
-     * @return array
+     * @return array<Field>
      */
-    public function fields(NovaRequest $request)
+    public function fields(NovaRequest $request): array
     {
         return [
             ID::make()->sortable(),
-            
+
             Text::make('Url', 'route'),
-            
-            DateTime::make('Aangemaakt op', 'created_at'),
+
+            MorphTo::make('Hoort bij', 'routeable'),
+
+            DateTime::make('Aangemaakt op', 'created_at')
+                ->hideFromIndex(),
+
+            DateTime::make('Laatst gewijzigd op', 'updated_at'),
         ];
     }
 
@@ -56,7 +65,7 @@ class RouteResource extends Resource
      * @param  NovaRequest  $request
      * @return array
      */
-    public function cards(NovaRequest $request)
+    public function cards(NovaRequest $request): array
     {
         return [];
     }
@@ -67,7 +76,7 @@ class RouteResource extends Resource
      * @param  NovaRequest  $request
      * @return array
      */
-    public function filters(NovaRequest $request)
+    public function filters(NovaRequest $request): array
     {
         return [];
     }
@@ -78,7 +87,7 @@ class RouteResource extends Resource
      * @param  NovaRequest  $request
      * @return array
      */
-    public function lenses(NovaRequest $request)
+    public function lenses(NovaRequest $request): array
     {
         return [];
     }
@@ -89,7 +98,7 @@ class RouteResource extends Resource
      * @param  NovaRequest  $request
      * @return array
      */
-    public function actions(NovaRequest $request)
+    public function actions(NovaRequest $request): array
     {
         return [];
     }
