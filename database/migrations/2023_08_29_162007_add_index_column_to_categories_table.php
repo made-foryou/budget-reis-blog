@@ -12,8 +12,10 @@ return new class extends Migration {
                 ->after('is_visible');
         });
 
-        // Set default sort order (just copy ID to sort order)
-        DB::statement('UPDATE categories SET `categories`.`index` = `categories`.`id`');
+        if (config('app.env') !== 'testing') {
+            // Set default sort order (just copy ID to sort order)
+            DB::statement('UPDATE categories SET `categories`.`index` = `categories`.`id`');
+        }
     }
 
     public function down(): void
