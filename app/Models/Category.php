@@ -7,8 +7,10 @@ use App\Events\ModelSavingEvent;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Carbon;
+use Spatie\EloquentSortable\Sortable;
 use Illuminate\Database\Eloquent\Model;
 use Database\Factories\CategoryFactory;
+use Spatie\EloquentSortable\SortableTrait;
 use App\QueryBuilders\CategoryQueryBuilder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -36,15 +38,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property string $slug
  * @property string $description
  * @property boolean $is_visible
+ * @property int $index
  *
  * @method static CategoryQueryBuilder query()
  * @method static CategoryFactory factory($count = null, $state = [])
  */
-class Category extends Model implements GeneratesASlug, Routeable
+class Category extends Model implements GeneratesASlug, Routeable, Sortable
 {
     use SoftDeletes;
     use GeneratesSlug;
     use HasFactory;
+    use SortableTrait;
     use HasRoute;
 
     protected $fillable = [
@@ -52,13 +56,20 @@ class Category extends Model implements GeneratesASlug, Routeable
         'slug',
         'description',
         'is_visible',
+        'index',
     ];
 
     protected $casts = [
         'is_visible' => 'boolean',
+        'index' => 'integer',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
         'deleted_at' => 'datetime',
+    ];
+
+    public array $sortable = [
+        'order_column_name' => 'index',
+        'sort_when_creating' => true,
     ];
 
     protected $dispatchesEvents = [
