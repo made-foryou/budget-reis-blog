@@ -2,29 +2,29 @@
 
 namespace App\Nova;
 
-use App\Nova\RouteResource;
+use App\Models\Route;
+use Laravel\Nova\Fields\Field;
+use Laravel\Nova\Fields\MorphTo;
+use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\MorphOne;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Slug;
-use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class PostResource extends Resource
+class RouteResource extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
-     * @var class-string<\App\Models\AppModelsPost>
+     * @var string class-string<Route>
      */
-    public static string $model = \App\Models\Post::class;
+    public static string $model = Route::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'title';
+    public static $title = 'id';
 
     /**
      * The columns that should be searched.
@@ -32,50 +32,37 @@ class PostResource extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'title', 'slug'
+        'id', 'route',
     ];
 
-    /**
-     * @var string
-     */
-    public static $group = 'Blog';
-
-    public static function label(): string
-    {
-        return 'Berichten';
-    }
-
-    public static function singularLabel(): string
-    {
-        return 'Bericht';
-    }
+    public static $group = 'Links';
 
     /**
      * Get the fields displayed by the resource.
      *
      * @param  NovaRequest  $request
-     * @return array
+     * @return array<Field>
      */
     public function fields(NovaRequest $request): array
     {
         return [
             ID::make()->sortable(),
 
-            Text::make(name: 'Titel', attribute: 'title')->sortable(),
-            Slug::make(name: 'Slug', attribute: 'slug')->from('title'),
+            Text::make('Url', 'route'),
 
-            BelongsTo::make('Auteur', 'user', 'App\Nova\User'),
+            MorphTo::make('Hoort bij', 'routeable'),
 
-            BelongsTo::make('Categorie', 'category', 'App\Nova\CategoryResource'),
+            DateTime::make('Aangemaakt op', 'created_at')
+                ->hideFromIndex(),
 
-            MorphOne::make('Route', 'route', RouteResource::class),
+            DateTime::make('Laatst gewijzigd op', 'updated_at'),
         ];
     }
 
     /**
      * Get the cards available for the request.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param  NovaRequest  $request
      * @return array
      */
     public function cards(NovaRequest $request): array
@@ -86,7 +73,7 @@ class PostResource extends Resource
     /**
      * Get the filters available for the resource.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param  NovaRequest  $request
      * @return array
      */
     public function filters(NovaRequest $request): array
@@ -97,7 +84,7 @@ class PostResource extends Resource
     /**
      * Get the lenses available for the resource.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param  NovaRequest  $request
      * @return array
      */
     public function lenses(NovaRequest $request): array
@@ -108,7 +95,7 @@ class PostResource extends Resource
     /**
      * Get the actions available for the resource.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param  NovaRequest  $request
      * @return array
      */
     public function actions(NovaRequest $request): array

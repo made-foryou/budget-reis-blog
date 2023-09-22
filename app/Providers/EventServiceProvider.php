@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
-use App\Events\SavingModel;
+use App\Events\ModelSavedEvent;
+use App\Events\ModelSavingEvent;
 use App\Listeners\GenerateSlug;
 use Illuminate\Auth\Events\Registered;
+use App\Listeners\UpdateRouteCacheListener;
+use App\Listeners\SaveAndUpdateRouteListener;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
@@ -23,8 +26,13 @@ class EventServiceProvider extends ServiceProvider
      * @var array<class-string, array<int, class-string>>
      */
     protected $listen = [
-        SavingModel::class => [
+        ModelSavingEvent::class => [
             GenerateSlug::class,
+        ],
+
+        ModelSavedEvent::class => [
+            SaveAndUpdateRouteListener::class,
+            UpdateRouteCacheListener::class,
         ],
 
         Registered::class => [
