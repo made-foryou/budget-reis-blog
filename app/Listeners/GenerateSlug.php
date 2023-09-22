@@ -2,7 +2,7 @@
 
 namespace App\Listeners;
 
-use App\Events\SavingModel;
+use App\Events\ModelSavingEvent;
 use Illuminate\Support\Str;
 use App\Models\GeneratesASlug;
 
@@ -11,7 +11,7 @@ class GenerateSlug
     /**
      * Handle the event.
      */
-    public function handle(SavingModel $event): void
+    public function handle(ModelSavingEvent $event): void
     {
         if (! $event->model instanceof GeneratesASlug) {
             return;

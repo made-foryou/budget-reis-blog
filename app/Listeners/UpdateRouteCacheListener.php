@@ -3,12 +3,12 @@
 namespace App\Listeners;
 
 use App\Models\Routeable;
-use App\Events\SavingModel;
+use App\Events\ModelSavedEvent;
 use App\Jobs\WriteRoutesCacheToFileJob;
 
 class UpdateRouteCacheListener
 {
-    public function handle(SavingModel $event): void
+    public function handle(ModelSavedEvent $event): void
     {
         if (!$event->model instanceof Routeable) {
             return;

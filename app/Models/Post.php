@@ -2,7 +2,8 @@
 
 namespace App\Models;
 
-use App\Events\SavingModel;
+use App\Events\ModelSavedEvent;
+use App\Events\ModelSavingEvent;
 use Illuminate\Support\Carbon;
 use Database\Factories\PostFactory;
 use App\QueryBuilders\PostQueryBuilder;
@@ -44,7 +45,8 @@ class Post extends Model implements GeneratesASlug, Routeable
      * @var class-string[]
      */
     protected $dispatchesEvents = [
-        'saving' => SavingModel::class,
+        'saving' => ModelSavingEvent::class,
+        'saved' => ModelSavedEvent::class,
     ];
 
     /**

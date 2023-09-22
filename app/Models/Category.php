@@ -2,7 +2,8 @@
 
 namespace App\Models;
 
-use App\Events\SavingModel;
+use App\Events\ModelSavedEvent;
+use App\Events\ModelSavingEvent;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Carbon;
@@ -61,7 +62,8 @@ class Category extends Model implements GeneratesASlug, Routeable
     ];
 
     protected $dispatchesEvents = [
-        'saving' => SavingModel::class,
+        'saving' => ModelSavingEvent::class,
+        'saved' => ModelSavedEvent::class,
     ];
 
     /**

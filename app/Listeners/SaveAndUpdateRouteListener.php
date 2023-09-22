@@ -4,11 +4,11 @@ namespace App\Listeners;
 
 use App\Models\Route;
 use App\Models\Routeable;
-use App\Events\SavingModel;
+use App\Events\ModelSavedEvent;
 
 class SaveAndUpdateRouteListener
 {
-    public function handle(SavingModel $event): void
+    public function handle(ModelSavedEvent $event): void
     {
         if (!$event->model instanceof Routeable) {
             return;
