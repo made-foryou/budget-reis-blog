@@ -4,8 +4,10 @@ namespace App\Models;
 
 use App\Events\SavingModel;
 use Illuminate\Support\Carbon;
+use Spatie\EloquentSortable\Sortable;
 use Illuminate\Database\Eloquent\Model;
 use Database\Factories\CategoryFactory;
+use Spatie\EloquentSortable\SortableTrait;
 use App\QueryBuilders\CategoryQueryBuilder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -19,6 +21,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property string $slug
  * @property string $description
  * @property boolean $is_visible
+ * @property int $index
  * @property-read Carbon $created_at
  * @property-read Carbon $updated_at
  * @property-read Carbon|null $deleted_at
@@ -29,24 +32,32 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @method static CategoryQueryBuilder query()
  * @method static CategoryFactory factory($count = null, $state = [])
  */
-class Category extends Model implements GeneratesASlug
+class Category extends Model implements GeneratesASlug, Sortable
 {
     use SoftDeletes;
     use GeneratesSlug;
     use HasFactory;
+    use SortableTrait;
 
     protected $fillable = [
         'name',
         'slug',
         'description',
         'is_visible',
+        'index',
     ];
 
     protected $casts = [
         'is_visible' => 'boolean',
+        'index' => 'integer',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
         'deleted_at' => 'datetime',
+    ];
+
+    public array $sortable = [
+        'order_column_name' => 'index',
+        'sort_when_creating' => true,
     ];
 
     protected $dispatchesEvents = [

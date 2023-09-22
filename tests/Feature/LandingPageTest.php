@@ -3,9 +3,12 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class LandingPageTest extends TestCase
 {
+    use RefreshDatabase;
+
     /** @test */
     public function it_loads()
     {
