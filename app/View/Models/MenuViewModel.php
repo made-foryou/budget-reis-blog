@@ -2,6 +2,7 @@
 
 namespace App\View\Models;
 
+use App\Models\Page;
 use App\Models\Category;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Eloquent\Collection;
@@ -12,6 +13,7 @@ class MenuViewModel implements Arrayable
     {
         return [
             'categories' => $this->categories(),
+            'pages' => $this->pages(),
         ];
     }
 
@@ -20,6 +22,14 @@ class MenuViewModel implements Arrayable
         return Category::query()
             ->firstLevel()
             ->shownInMenu()
+            ->ordered()
+            ->get();
+    }
+
+    protected function pages(): Collection
+    {
+        return Page::query()
+            ->showInMenu()
             ->ordered()
             ->get();
     }
