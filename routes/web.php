@@ -41,7 +41,10 @@ $routes = collect($routes)->map(
 $routes->each(
      function (RouteData $route) {
         return match ($route->type) {
-            RouteType::PAGE => throw new \Exception('To be implemented'),
+            RouteType::PAGE => Route::get(
+                uri: $route->route,
+                action: fn () => 'test',
+            )->name($route->type->value.'.'.$route->id),
             RouteType::CATEGORY => Route::get(
                 uri: $route->route,
                 action: CategoryController::class,
