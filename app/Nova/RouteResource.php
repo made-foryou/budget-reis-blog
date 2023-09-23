@@ -102,4 +102,14 @@ class RouteResource extends Resource
     {
         return [];
     }
+
+    public static function label(): string
+    {
+        return 'Routes';
+    }
+
+    public static function singularLabel(): string
+    {
+        return "Route";
+    }
 }
