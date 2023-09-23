@@ -53,7 +53,8 @@ class CategoryResource extends Resource
             BelongsTo::make('Category', 'category', CategoryResource::class)
                 ->nullable(),
 
-            MorphOne::make('Route', 'route', RouteResource::class),
+            MorphOne::make('Route', 'route', RouteResource::class)
+                ->onlyOnDetail(),
 
             HasMany::make('Categories', 'categories', CategoryResource::class),
 
