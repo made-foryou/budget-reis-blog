@@ -2,8 +2,10 @@
 
 namespace App\Nova;
 
+use App\Models\Post;
 use App\Nova\RouteResource;
 use Laravel\Nova\Fields\ID;
+use App\Models\AppModelsPost;
 use Laravel\Nova\Fields\MorphOne;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Slug;
@@ -15,9 +17,9 @@ class PostResource extends Resource
     /**
      * The model the resource corresponds to.
      *
-     * @var class-string<\App\Models\AppModelsPost>
+     * @var class-string<Post>
      */
-    public static string $model = \App\Models\Post::class;
+    public static string $model = Post::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -68,7 +70,8 @@ class PostResource extends Resource
 
             BelongsTo::make('Categorie', 'category', 'App\Nova\CategoryResource'),
 
-            MorphOne::make('Route', 'route', RouteResource::class),
+            MorphOne::make('Route', 'route', RouteResource::class)
+                ->onlyOnDetail(),
         ];
     }
 

@@ -20,6 +20,7 @@ class MenuViewModel implements Arrayable
         return Category::query()
             ->firstLevel()
             ->shownInMenu()
+            ->ordered()
             ->get();
     }
 

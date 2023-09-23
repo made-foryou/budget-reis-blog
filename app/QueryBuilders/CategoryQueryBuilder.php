@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 /**
  * @method Category|null first($columns = ['*'])
+ * @method CategoryQueryBuilder ordered(string $direction = 'asc')
  */
 class CategoryQueryBuilder extends Builder
 {
