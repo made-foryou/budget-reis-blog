@@ -10,7 +10,10 @@ use Spatie\EloquentSortable\Sortable;
 use Illuminate\Database\Eloquent\Model;
 use App\QueryBuilders\PageQueryBuilder;
 use Spatie\EloquentSortable\SortableTrait;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
@@ -18,12 +21,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property string $slug
  * @property boolean $is_visible
  * @property int $index
+ * @property int|null $page_id
  *
  * @property-read int $id
  * @property-read Carbon $created_at
  * @property-read Carbon $updated_at
  * @property-read Carbon|null $deleted_at
  * @property-read Route|null $route
+ * @property-read Page|null $parent
+ * @property-read Collection<Page> $children
  *
  * @method static PageFactory factory($count = null, $state = [])
  * @method static PageQueryBuilder query()
@@ -60,6 +66,16 @@ class Page extends Model implements GeneratesASlug, Routeable, Sortable
         'saving' => ModelSavingEvent::class,
         'saved' => ModelSavedEvent::class,
     ];
+
+    public function parent(): BelongsTo
+    {
+        return $this->belongsTo(Page::class);
+    }
+
+    public function children(): HasMany
+    {
+        return $this->hasMany(Page::class);
+    }
 
     /**
      * Get the value key.

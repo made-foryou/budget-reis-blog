@@ -29,6 +29,7 @@ class MenuViewModel implements Arrayable
     protected function pages(): Collection
     {
         return Page::query()
+            ->firstLevel()
             ->showInMenu()
             ->ordered()
             ->get();

@@ -16,6 +16,11 @@ use Illuminate\Database\Eloquent\Collection;
  */
 class PageQueryBuilder extends Builder
 {
+    public function firstLevel(): PageQueryBuilder
+    {
+        return $this->whereNull(columns: 'page_id');
+    }
+
     public function showInMenu(): PageQueryBuilder
     {
         return $this->where(
