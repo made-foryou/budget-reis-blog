@@ -10,17 +10,17 @@ use Illuminate\Contracts\View\View;
 final readonly class CategoryViewModel implements Arrayable, Responsable
 {
     public function __construct(
-        public Category $category,    
+        public Category $category,
     ) { }
 
     public function toArray(): array
     {
         return [
-            'menu' => (new MenuViewModel())->toArray(),
+            'menu' => MenuViewModel::make(),
             'category' => $this->category,
         ];
     }
-    
+
     public function toResponse($request): View
     {
         return view('templates.category', [

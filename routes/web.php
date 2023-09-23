@@ -4,6 +4,7 @@ use App\Data\RouteData;
 use App\Enums\RouteType;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\PageController;
 use App\View\Models\LandingPageViewModel;
 use App\Http\Controllers\CategoryController;
 
@@ -43,7 +44,7 @@ $routes->each(
         return match ($route->type) {
             RouteType::PAGE => Route::get(
                 uri: $route->route,
-                action: fn () => 'test',
+                action: PageController::class,
             )->name($route->type->value.'.'.$route->id),
             RouteType::CATEGORY => Route::get(
                 uri: $route->route,

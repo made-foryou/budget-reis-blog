@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use Exception;
+use App\Models\Page;
 use App\Enums\RouteType;
 use App\Models\Post;
 use App\Models\Route;
@@ -15,7 +17,7 @@ class RouteableRequest extends FormRequest
      * The type of the current route.
      */
     public ?RouteType $type = null;
-    
+
     /**
      * The current route object.
      */
@@ -31,6 +33,9 @@ class RouteableRequest extends FormRequest
         return [];
     }
 
+    /**
+     * @throws Exception
+     */
     public function getRoute(): ?Route
     {
         if (! $this->route) {
@@ -46,7 +51,7 @@ class RouteableRequest extends FormRequest
         return $this->route;
     }
 
-    public function getModel(): Category|Post
+    public function getModel(): Category|Post|Page
     {
         if ($this->getRoute() === null) {
             abort(404);
