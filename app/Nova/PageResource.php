@@ -8,7 +8,9 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Slug;
 use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\MorphOne;
+use Laravel\Nova\Fields\BelongsTo;
 
 class PageResource extends Resource
 {
@@ -48,10 +50,15 @@ class PageResource extends Resource
                 ->sortable()
                 ->rules('required'),
 
+            BelongsTo::make('Bovenliggende pagina', 'parent', PageResource::class)
+                ->nullable(),
+
             Boolean::make('Zichtbaar?', 'is_visible'),
 
             MorphOne::make('Route', 'route', RouteResource::class)
                 ->onlyOnDetail(),
+
+            HasMany::make('Onderliggende pagina\'s', 'children', PageResource::class),
         ];
     }
 

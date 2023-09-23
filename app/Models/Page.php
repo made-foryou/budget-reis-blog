@@ -69,12 +69,12 @@ class Page extends Model implements GeneratesASlug, Routeable, Sortable
 
     public function parent(): BelongsTo
     {
-        return $this->belongsTo(Page::class);
+        return $this->belongsTo(Page::class, 'page_id');
     }
 
     public function children(): HasMany
     {
-        return $this->hasMany(Page::class);
+        return $this->hasMany(Page::class, 'page_id');
     }
 
     /**
@@ -95,6 +95,10 @@ class Page extends Model implements GeneratesASlug, Routeable, Sortable
     public function getRoute(): string
     {
         $route = '';
+
+        if ($this->parent !== null) {
+            $route = $this->parent->getRoute();
+        }
 
         return $route . '/' . $this->slug;
     }
