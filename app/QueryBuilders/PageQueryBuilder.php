@@ -3,14 +3,14 @@
 namespace App\QueryBuilders;
 
 use App\Models\Page;
+use App\Collections\PageCollection;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
 
 /**
  * @method Page|null first($columns = ['*'])
  * @method Page firstOrFail($columns = ['*'])
  * @method Page firstOrNew(array $attributes = [], array $values = [])
- * @method Collection<Page> get($columns = ['*'])
+ * @method PageCollection<Page> get($columns = ['*'])
  *
  * @method PageQueryBuilder ordered(string $direction = 'asc')
  */

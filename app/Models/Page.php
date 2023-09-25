@@ -6,11 +6,11 @@ use Illuminate\Support\Carbon;
 use App\Events\ModelSavedEvent;
 use App\Events\ModelSavingEvent;
 use Database\Factories\PageFactory;
+use App\Collections\PageCollection;
 use Spatie\EloquentSortable\Sortable;
 use Illuminate\Database\Eloquent\Model;
 use App\QueryBuilders\PageQueryBuilder;
 use Spatie\EloquentSortable\SortableTrait;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -29,12 +29,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property-read Carbon|null $deleted_at
  * @property-read Route|null $route
  * @property-read Page|null $parent
- * @property-read Collection<Page> $children
+ * @property-read PageCollection<Page> $children
  *
  * @method static PageFactory factory($count = null, $state = [])
  * @method static PageQueryBuilder query()
  */
-class Page extends Model implements GeneratesASlug, Routeable, Sortable
+class Page extends Model implements GeneratesASlug, Routeable, Sortable, Visibility
 {
     use SoftDeletes;
     use HasFactory;
@@ -111,5 +111,15 @@ class Page extends Model implements GeneratesASlug, Routeable, Sortable
     public function newEloquentBuilder($query): PageQueryBuilder
     {
         return new PageQueryBuilder($query);
+    }
+
+    public function newCollection(array $models = []): PageCollection
+    {
+        return new PageCollection($models);
+    }
+
+    public function isVisible(): bool
+    {
+        return $this->is_visible;
     }
 }
