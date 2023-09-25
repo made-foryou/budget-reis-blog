@@ -19,6 +19,7 @@
         "laravel/sanctum": "^3.2",
         "laravel/scout": "^10.2",
         "laravel/tinker": "^2.8",
+        "outl1ne/nova-settings": "*",
         "outl1ne/nova-sortable": "^3.4",
         "spatie/laravel-data": "^3.9"
     },

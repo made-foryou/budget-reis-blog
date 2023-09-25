@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2420ee5137ff7b4d5cc4ded5feb972cc",
+    "content-hash": "882348ff771a6584c8bbc59766eeeb9b",
     "packages": [
         {
             "name": "brick/math",
@@ -3177,6 +3177,68 @@
                 }
             ],
             "time": "2023-09-15T14:12:06+00:00"
+        },
+        {
+            "name": "outl1ne/nova-settings",
+            "version": "5.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/outl1ne/nova-settings.git",
+                "reference": "ff74c34f941349f04420add2df26e99f103d81bc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/outl1ne/nova-settings/zipball/ff74c34f941349f04420add2df26e99f103d81bc",
+                "reference": "ff74c34f941349f04420add2df26e99f103d81bc",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/nova": "^4.26",
+                "outl1ne/nova-translations-loader": "^5.0",
+                "php": ">=8.0"
+            },
+            "require-dev": {
+                "laravel/nova-dusk-suite": "^9.3-dev",
+                "orchestra/testbench": "^7.0",
+                "orchestra/testbench-dusk": "^7.0",
+                "phpunit/phpunit": "^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Outl1ne\\NovaSettings\\NovaSettingsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "files": [
+                    "./src/helpers.php"
+                ],
+                "psr-4": {
+                    "Outl1ne\\NovaSettings\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova tool for editing custom settings using native Nova fields.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "support": {
+                "issues": "https://github.com/outl1ne/nova-settings/issues",
+                "source": "https://github.com/outl1ne/nova-settings/tree/5.2.1"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/outl1ne",
+                    "type": "github"
+                }
+            ],
+            "time": "2023-08-10T08:38:43+00:00"
         },
         {
             "name": "outl1ne/nova-sortable",
