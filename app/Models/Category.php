@@ -44,7 +44,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @method static CategoryQueryBuilder query()
  * @method static CategoryFactory factory($count = null, $state = [])
  */
-class Category extends Model implements GeneratesASlug, Routeable, Sortable, Visibility
+class Category extends Model implements GeneratesASlug, Routeable, Sortable, Visibility, Selectable
 {
     use SoftDeletes;
     use GeneratesSlug;
@@ -152,5 +152,10 @@ class Category extends Model implements GeneratesASlug, Routeable, Sortable, Vis
     public function isVisible(): bool
     {
         return $this->is_visible;
+    }
+
+    public function getTitle(): string
+    {
+        return $this->name;
     }
 }

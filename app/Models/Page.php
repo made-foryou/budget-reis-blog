@@ -34,7 +34,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @method static PageFactory factory($count = null, $state = [])
  * @method static PageQueryBuilder query()
  */
-class Page extends Model implements GeneratesASlug, Routeable, Sortable, Visibility
+class Page extends Model implements GeneratesASlug, Routeable, Sortable, Visibility, Selectable
 {
     use SoftDeletes;
     use HasFactory;
@@ -121,5 +121,10 @@ class Page extends Model implements GeneratesASlug, Routeable, Sortable, Visibil
     public function isVisible(): bool
     {
         return $this->is_visible;
+    }
+
+    public function getTitle(): string
+    {
+        return $this->name;
     }
 }

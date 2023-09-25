@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Collection;
 class PageCollection extends Collection
 {
     use CanBeInvisible;
+    use UsedWithinSelectFields;
 }
