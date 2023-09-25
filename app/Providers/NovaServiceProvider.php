@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use App\Models\Page;
 use App\Nova\Dashboards\Main;
+use Laravel\Nova\Fields\Select;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\Nova;
 use Outl1ne\NovaSettings\NovaSettings;
@@ -22,6 +24,13 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function boot(): void
     {
         parent::boot();
+
+        NovaSettings::addSettingsFields([
+            Select::make('Landingspagina', 'landing_page_id')
+                ->options(Page::query()->get()->forSelects())
+                ->rules(['required', 'exists:pages,id'])
+                ->help('Selecteer de pagina welke je als landingspagina wilt laden.'),
+        ]);
     }
 
     /**
