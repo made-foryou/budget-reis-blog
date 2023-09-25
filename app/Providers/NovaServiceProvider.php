@@ -25,12 +25,14 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         parent::boot();
 
-        NovaSettings::addSettingsFields([
-            Select::make('Landingspagina', 'landing_page_id')
-                ->options(Page::query()->get()->forSelects())
-                ->rules(['required', 'exists:pages,id'])
-                ->help('Selecteer de pagina welke je als landingspagina wilt laden.'),
-        ]);
+        if (!$this->app->runningInConsole()) {
+            NovaSettings::addSettingsFields([
+                Select::make('Landingspagina', 'landing_page_id')
+                    ->options(Page::query()->get()->forSelects())
+                    ->rules(['required', 'exists:pages,id'])
+                    ->help('Selecteer de pagina welke je als landingspagina wilt laden.'),
+            ]);
+        }
     }
 
     /**
