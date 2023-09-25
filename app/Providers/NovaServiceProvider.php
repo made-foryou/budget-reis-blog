@@ -7,6 +7,7 @@ namespace App\Providers;
 use App\Nova\Dashboards\Main;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\Nova;
+use Outl1ne\NovaSettings\NovaSettings;
 use Laravel\Nova\NovaApplicationServiceProvider;
 
 /**
@@ -63,6 +64,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         return [
             ...parent::tools(),
+
+            new NovaSettings(),
         ];
     }
 
