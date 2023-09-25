@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Events\ModelSavedEvent;
 use App\Events\ModelSavingEvent;
+use App\Collections\CategoryCollection;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Carbon;
@@ -30,7 +31,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property-read Carbon $updated_at
  * @property-read Carbon|null $deleted_at
  * @property-read Category|null $category
- * @property-read Collection<Category> $categories
+ * @property-read CategoryCollection<Category> $categories
  * @property-read Collection<Post> $posts
  * @property-read Route|null $route
  *
@@ -43,7 +44,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @method static CategoryQueryBuilder query()
  * @method static CategoryFactory factory($count = null, $state = [])
  */
-class Category extends Model implements GeneratesASlug, Routeable, Sortable
+class Category extends Model implements GeneratesASlug, Routeable, Sortable, Visibility, Selectable
 {
     use SoftDeletes;
     use GeneratesSlug;
@@ -141,5 +142,20 @@ class Category extends Model implements GeneratesASlug, Routeable, Sortable
         }
 
         return $route . '/' . $this->slug;
+    }
+
+    public function newCollection(array $models = []): CategoryCollection
+    {
+        return new CategoryCollection($models);
+    }
+
+    public function isVisible(): bool
+    {
+        return $this->is_visible;
+    }
+
+    public function getTitle(): string
+    {
+        return $this->name;
     }
 }

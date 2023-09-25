@@ -4,6 +4,7 @@ namespace App\Enums;
 
 use Exception;
 use App\Models\Post;
+use App\Models\Page;
 use App\Models\Category;
 
 enum RouteType: string
@@ -19,7 +20,7 @@ enum RouteType: string
     public function getClass(): string
     {
         return match ($this) {
-            self::PAGE => throw new Exception('To be implemented'),
+            self::PAGE => Page::class,
             self::CATEGORY => Category::class,
             self::POST => Post::class,
         };
@@ -30,6 +31,7 @@ enum RouteType: string
         return match($class) {
             Category::class => RouteType::CATEGORY,
             Post::class => RouteType::POST,
+            Page::class => RouteType::PAGE,
         };
     }
 }

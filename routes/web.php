@@ -4,6 +4,7 @@ use App\Data\RouteData;
 use App\Enums\RouteType;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\PageController;
 use App\View\Models\LandingPageViewModel;
 use App\Http\Controllers\CategoryController;
 
@@ -41,7 +42,10 @@ $routes = collect($routes)->map(
 $routes->each(
      function (RouteData $route) {
         return match ($route->type) {
-            RouteType::PAGE => throw new \Exception('To be implemented'),
+            RouteType::PAGE => Route::get(
+                uri: $route->route,
+                action: PageController::class,
+            )->name($route->type->value.'.'.$route->id),
             RouteType::CATEGORY => Route::get(
                 uri: $route->route,
                 action: CategoryController::class,
