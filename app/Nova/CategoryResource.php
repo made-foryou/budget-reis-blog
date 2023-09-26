@@ -56,6 +56,9 @@ class CategoryResource extends Resource
             MorphOne::make('Route', 'route', RouteResource::class)
                 ->onlyOnDetail(),
 
+            MorphOne::make('Meta', 'meta', MetaResource::class)
+                ->asPanel(),
+
             HasMany::make('Categories', 'categories', CategoryResource::class),
 
             HasMany::make('Berichten', 'posts', PostResource::class),

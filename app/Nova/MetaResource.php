@@ -29,7 +29,8 @@ class MetaResource extends Resource
         return [
             ID::make()->sortable(),
 
-            MorphTo::make('Gekoppeld aan', 'describable'),
+            MorphTo::make('Gekoppeld aan', 'describable')
+                ->types([CategoryResource::class, PostResource::class, PageResource::class]),
 
             Text::make('Pagina titel', 'title')
                 ->sortable()

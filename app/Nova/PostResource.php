@@ -64,13 +64,13 @@ class PostResource extends Resource
             ID::make()->sortable(),
 
             Text::make(name: 'Titel', attribute: 'title')->sortable(),
-            Slug::make(name: 'Slug', attribute: 'slug')->from('title'),
+            Slug::make(name: 'Slug', attribute: 'slug')->from(from: 'title'),
 
-            BelongsTo::make('Auteur', 'user', 'App\Nova\User'),
+            BelongsTo::make(name: 'Auteur', attribute: 'user', resource: 'App\Nova\User'),
 
-            BelongsTo::make('Categorie', 'category', 'App\Nova\CategoryResource'),
+            BelongsTo::make(name: 'Categorie', attribute: 'category', resource: 'App\Nova\CategoryResource'),
 
-            MorphOne::make('Route', 'route', RouteResource::class)
+            MorphOne::make(name: 'Route', attribute: 'route', resource: RouteResource::class)
                 ->onlyOnDetail(),
         ];
     }

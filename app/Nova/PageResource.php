@@ -58,6 +58,9 @@ class PageResource extends Resource
             MorphOne::make('Route', 'route', RouteResource::class)
                 ->onlyOnDetail(),
 
+            MorphOne::make('Meta', 'meta', MetaResource::class)
+                ->asPanel(),
+
             HasMany::make('Onderliggende pagina\'s', 'children', PageResource::class),
         ];
     }
