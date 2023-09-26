@@ -6,6 +6,7 @@ use App\Models\Meta;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\MorphTo;
 
 class MetaResource extends Resource
 {
@@ -27,6 +28,8 @@ class MetaResource extends Resource
     {
         return [
             ID::make()->sortable(),
+
+            MorphTo::make('Gekoppeld aan', 'describable'),
 
             Text::make('Pagina titel', 'title')
                 ->sortable()
