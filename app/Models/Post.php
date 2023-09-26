@@ -7,6 +7,7 @@ use App\Events\ModelSavingEvent;
 use Illuminate\Support\Carbon;
 use Database\Factories\PostFactory;
 use App\QueryBuilders\PostQueryBuilder;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -60,6 +61,11 @@ class Post extends Model implements GeneratesASlug, Routeable
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function meta(): MorphOne
+    {
+        return $this->morphOne(Meta::class, 'describable');
     }
 
     public function newEloquentBuilder($query): PostQueryBuilder

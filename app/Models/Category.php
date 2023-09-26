@@ -108,6 +108,11 @@ class Category extends Model implements GeneratesASlug, Routeable, Sortable, Vis
         return $this->hasMany(Post::class);
     }
 
+    public function meta(): MorphOne
+    {
+        return $this->morphOne(Meta::class, 'describable');
+    }
+
     /**
      * Get the value key.
      *

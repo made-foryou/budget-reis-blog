@@ -30,6 +30,8 @@ class Meta extends Model
     use SoftDeletes;
     use HasFactory;
 
+    protected $table = 'meta';
+
     protected $fillable = [
         'title',
         'description',
@@ -47,7 +49,7 @@ class Meta extends Model
 
     public function describable(): MorphTo
     {
-        return $this->morphTo('describable');
+        return $this->morphTo();
     }
 
     protected static function newFactory(): MetaFactory
