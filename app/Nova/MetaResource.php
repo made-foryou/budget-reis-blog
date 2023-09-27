@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\MorphTo;
 use Laravel\Nova\Fields\Textarea;
+use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 
 class MetaResource extends Resource
 {
@@ -43,6 +44,10 @@ class MetaResource extends Resource
                 ->rules('required', 'string')
                 ->maxlength(160)
                 ->hideFromIndex(),
+
+            Images::make('Uitgelichte afbeelding', 'featured')
+                ->nullable()
+                ->enableExistingMedia(),
 
             Text::make('Pagina titel voor social media', 'social_title')
                 ->sortable()
