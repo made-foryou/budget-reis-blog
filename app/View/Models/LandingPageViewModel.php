@@ -7,7 +7,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Support\Responsable;
 
-class LandingPageViewModel implements Arrayable, Responsable
+final readonly class LandingPageViewModel implements Arrayable, Responsable
 {
     public function page(): Page
     {
@@ -17,9 +17,12 @@ class LandingPageViewModel implements Arrayable, Responsable
 
     public function toArray(): array
     {
+        $page = $this->page();
+
         return [
-            'page' => $this->page(),
+            'page' => $page,
             'menu' => MenuViewModel::make(),
+            'meta' => MetaViewModel::make($page),
         ];
     }
 

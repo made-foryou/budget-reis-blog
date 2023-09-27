@@ -44,7 +44,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @method static CategoryQueryBuilder query()
  * @method static CategoryFactory factory($count = null, $state = [])
  */
-class Category extends Model implements GeneratesASlug, Routeable, Sortable, Visibility, Selectable
+class Category extends Model implements
+    GeneratesASlug, Routeable, Sortable, Visibility, Selectable, MetaAware
 {
     use SoftDeletes;
     use GeneratesSlug;
@@ -106,6 +107,11 @@ class Category extends Model implements GeneratesASlug, Routeable, Sortable, Vis
     public function posts(): HasMany
     {
         return $this->hasMany(Post::class);
+    }
+
+    public function meta(): MorphOne
+    {
+        return $this->morphOne(Meta::class, 'describable');
     }
 
     /**

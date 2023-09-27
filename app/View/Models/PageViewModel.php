@@ -23,6 +23,7 @@ final readonly class PageViewModel implements Arrayable, Responsable
     {
         return [
             'menu' => MenuViewModel::make(),
+            'meta' => MetaViewModel::make($this->page),
             'page' => $this->page,
         ];
     }

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "882348ff771a6584c8bbc59766eeeb9b",
+    "content-hash": "ca4ad16566de90485aa740d941a2f8b3",
     "packages": [
         {
             "name": "brick/math",
@@ -4414,6 +4414,52 @@
                 }
             ],
             "time": "2023-09-01T06:07:32+00:00"
+        },
+        {
+            "name": "smartians/nova-charcounted-fields",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/patricktsg/nova-counted-fields.git",
+                "reference": "19663413f5435622810330bdba40c0ea4b30089a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/patricktsg/nova-counted-fields/zipball/19663413f5435622810330bdba40c0ea4b30089a",
+                "reference": "19663413f5435622810330bdba40c0ea4b30089a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Smartians\\CharcountedFields\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Smartians\\CharcountedFields\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Text and textarea fields with a character counter.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "support": {
+                "issues": "https://github.com/patricktsg/nova-counted-fields/issues",
+                "source": "https://github.com/patricktsg/nova-counted-fields/tree/master"
+            },
+            "time": "2019-04-25T10:01:23+00:00"
         },
         {
             "name": "spatie/eloquent-sortable",

@@ -21,6 +21,7 @@
         "laravel/tinker": "^2.8",
         "outl1ne/nova-settings": "*",
         "outl1ne/nova-sortable": "^3.4",
+        "smartians/nova-charcounted-fields": "dev-master",
         "spatie/laravel-data": "^3.9"
     },
     "require-dev": {

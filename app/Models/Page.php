@@ -13,6 +13,7 @@ use App\QueryBuilders\PageQueryBuilder;
 use Spatie\EloquentSortable\SortableTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -34,7 +35,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @method static PageFactory factory($count = null, $state = [])
  * @method static PageQueryBuilder query()
  */
-class Page extends Model implements GeneratesASlug, Routeable, Sortable, Visibility, Selectable
+class Page extends Model implements
+    GeneratesASlug, Routeable, Sortable, Visibility, Selectable, MetaAware
 {
     use SoftDeletes;
     use HasFactory;
@@ -75,6 +77,11 @@ class Page extends Model implements GeneratesASlug, Routeable, Sortable, Visibil
     public function children(): HasMany
     {
         return $this->hasMany(Page::class, 'page_id');
+    }
+
+    public function meta(): MorphOne
+    {
+        return $this->morphOne(Meta::class, 'describable');
     }
 
     /**
