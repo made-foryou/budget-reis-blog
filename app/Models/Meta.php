@@ -3,11 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Support\Carbon;
+use Spatie\MediaLibrary\HasMedia;
 use Database\Factories\MetaFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Image\Exceptions\InvalidManipulation;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 /**
  * @property-read int $id
@@ -25,10 +29,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  *
  * @method static MetaFactory factory($count = null, $state = [])
  */
-class Meta extends Model
+class Meta extends Model implements HasMedia
 {
     use SoftDeletes;
     use HasFactory;
+    use InteractsWithMedia;
 
     protected $table = 'meta';
 
@@ -50,6 +55,22 @@ class Meta extends Model
     public function describable(): MorphTo
     {
         return $this->morphTo();
+    }
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('featured')
+            ->singleFile();
+    }
+
+    /**
+     * @throws InvalidManipulation
+     */
+    public function registerMediaConversions(Media $media = null): void
+    {
+        $this->addMediaConversion('social media')
+            ->width(1200)
+            ->height(630);
     }
 
     protected static function newFactory(): MetaFactory
