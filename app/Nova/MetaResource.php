@@ -36,24 +36,24 @@ class MetaResource extends Resource
             Text::make('Pagina titel', 'title')
                 ->sortable()
                 ->rules('required', 'string', 'max:255')
-                ->help('Zorg ervoor dat de titel uit 60 of minder karakters bestaat.'),
+                ->maxlength(60),
 
             Textarea::make('Pagina omschrijving', 'description')
                 ->sortable()
                 ->rules('required', 'string')
-                ->help('Zorg ervoor dat de omschrijving uit 160 of minder karakters bestaat.')
+                ->maxlength(160)
                 ->hideFromIndex(),
 
             Text::make('Pagina titel voor social media', 'social_title')
                 ->sortable()
                 ->rules('nullable', 'string', 'max:255')
-                ->help('Zorg ervoor dat de titel uit 60 of minder karakters bestaat.')
+                ->maxlength(60)
                 ->hideFromIndex(),
 
             Textarea::make('Pagina omschrijving voor social media', 'social_description')
                 ->sortable()
                 ->rules('nullable', 'string')
-                ->help('Zorg ervoor dat de omschrijving uit 160 of minder karakters bestaat.')
+                ->maxlength(160)
                 ->hideFromIndex(),
         ];
     }
