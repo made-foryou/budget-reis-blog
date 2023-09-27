@@ -35,7 +35,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @method static PageFactory factory($count = null, $state = [])
  * @method static PageQueryBuilder query()
  */
-class Page extends Model implements GeneratesASlug, Routeable, Sortable, Visibility, Selectable
+class Page extends Model implements
+    GeneratesASlug, Routeable, Sortable, Visibility, Selectable, MetaAware
 {
     use SoftDeletes;
     use HasFactory;

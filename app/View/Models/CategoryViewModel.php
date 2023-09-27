@@ -17,6 +17,7 @@ final readonly class CategoryViewModel implements Arrayable, Responsable
     {
         return [
             'menu' => MenuViewModel::make(),
+            'meta' => MetaViewModel::make($this->category),
             'category' => $this->category,
         ];
     }

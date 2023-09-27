@@ -28,7 +28,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static PostFactory factory($count = null, $state = [])
  * @method static PostQueryBuilder query()
  */
-class Post extends Model implements GeneratesASlug, Routeable
+class Post extends Model implements GeneratesASlug, Routeable, MetaAware
 {
     use HasFactory;
     use GeneratesSlug;

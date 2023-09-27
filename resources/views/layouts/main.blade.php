@@ -4,8 +4,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>{{ $title ?? config('budget-reis.default_title') }}</title>
-        <meta name="description" content="{{ $description ?? config('budget-reis.default_description') }}" />
+        <title>{{ $meta['meta']->title ?? config('budget-reis.default_title') }}</title>
+        <meta name="description" content="{{ $meta['meta']->description ?? config('budget-reis.default_description') }}" />
 
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
