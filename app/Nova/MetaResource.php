@@ -7,6 +7,7 @@ use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\MorphTo;
+use Laravel\Nova\Fields\Textarea;
 
 class MetaResource extends Resource
 {
@@ -34,19 +35,26 @@ class MetaResource extends Resource
 
             Text::make('Pagina titel', 'title')
                 ->sortable()
-                ->rules('required', 'string', 'max:255'),
+                ->rules('required', 'string', 'max:255')
+                ->help('Zorg ervoor dat de titel uit 60 of minder karakters bestaat.'),
 
-            Text::make('Pagina omschrijving', 'description')
+            Textarea::make('Pagina omschrijving', 'description')
                 ->sortable()
-                ->rules('required', 'string'),
+                ->rules('required', 'string')
+                ->help('Zorg ervoor dat de omschrijving uit 160 of minder karakters bestaat.')
+                ->hideFromIndex(),
 
             Text::make('Pagina titel voor social media', 'social_title')
                 ->sortable()
-                ->rules('nullable', 'string', 'max:255'),
+                ->rules('nullable', 'string', 'max:255')
+                ->help('Zorg ervoor dat de titel uit 60 of minder karakters bestaat.')
+                ->hideFromIndex(),
 
-            Text::make('Pagina omschrijving voor social media', 'social_description')
+            Textarea::make('Pagina omschrijving voor social media', 'social_description')
                 ->sortable()
-                ->rules('nullable', 'string'),
+                ->rules('nullable', 'string')
+                ->help('Zorg ervoor dat de omschrijving uit 160 of minder karakters bestaat.')
+                ->hideFromIndex(),
         ];
     }
 
