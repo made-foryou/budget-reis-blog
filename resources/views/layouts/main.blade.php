@@ -9,7 +9,7 @@
 
         <meta name="og:title" content="{{ $meta['meta']->title_social ?? $meta['meta']->title ?? config('budget-reis.default_title') }}">
         <meta name="og:description" content="{{ $meta['meta']->description_social ?? $meta['meta']->description ?? config('budget-reis.default_description') }}">
-        @if ($meta['meta']->getMedia('featured'))
+        @if ($meta['meta'] && $meta['meta']->getMedia('featured'))
             <meta name="og:image" content="{{ $meta['meta']->getFirstMedia('featured')->getFullUrl() }}">
         @endif
 
