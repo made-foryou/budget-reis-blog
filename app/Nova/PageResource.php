@@ -2,7 +2,9 @@
 
 namespace App\Nova;
 
+use Exception;
 use App\Models\Page;
+use Laravel\Nova\Panel;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
@@ -11,6 +13,8 @@ use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\MorphOne;
 use Laravel\Nova\Fields\BelongsTo;
+use Whitecube\NovaFlexibleContent\Flexible;
+use App\Nova\Flexible\Layouts\FeaturedPosts;
 
 class PageResource extends Resource
 {
@@ -36,6 +40,9 @@ class PageResource extends Resource
         return 'Pagina';
     }
 
+    /**
+     * @throws Exception
+     */
     public function fields(Request $request): array
     {
         return [
@@ -54,6 +61,10 @@ class PageResource extends Resource
                 ->nullable(),
 
             Boolean::make('Zichtbaar?', 'is_visible'),
+
+            Flexible::make('Inhoud', 'content')
+                ->addLayout(FeaturedPosts::class)
+                ->fullWidth(),
 
             MorphOne::make('Route', 'route', RouteResource::class)
                 ->onlyOnDetail(),

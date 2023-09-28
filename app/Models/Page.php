@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Whitecube\NovaFlexibleContent\Value\FlexibleCast;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
@@ -53,6 +54,7 @@ class Page extends Model implements
     ];
 
     protected $casts = [
+        'content' => FlexibleCast::class,
         'is_visible' => 'boolean',
         'index' => 'integer',
         'created_at' => 'datetime',
