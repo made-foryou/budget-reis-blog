@@ -12,6 +12,7 @@
     ],
     "require": {
         "php": "^8.2",
+        "advoor/nova-editor-js": "^3.2",
         "coderello/laravel-nova-lang": "^2.0",
         "ebess/advanced-nova-media-library": "^4.1",
         "guzzlehttp/guzzle": "^7.2",
