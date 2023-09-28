@@ -117,6 +117,10 @@ return [
                 'youtube' => true
             ],
         ],
+        'hyperlink' => [
+            'activated' => true,
+            'inlineToolbar' => true,
+        ]
     ],
 
     /**
