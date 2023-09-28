@@ -20,6 +20,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 /**
  * @property string $name
  * @property string $slug
+ * @property mixed $content
  * @property boolean $is_visible
  * @property int $index
  * @property int|null $page_id
