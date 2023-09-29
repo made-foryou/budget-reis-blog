@@ -1,27 +1,27 @@
 <?php
 
-declare(strict_types=1);
-
 namespace App\View\Components;
 
 use Closure;
+use App\Models\Post;
+use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 /**
  * ## Featured article component
  * ---
  */
-final class FeaturedArticle extends Component
+class FeaturedArticle extends Component
 {
     /**
      * Constructor
      */
     public function __construct(
-        public readonly string $title,
-        public readonly string $image,
+        public Post $post,
     ) {
-        //
+        $this->post->load(['user']);
     }
 
     /**

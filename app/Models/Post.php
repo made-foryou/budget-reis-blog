@@ -5,8 +5,11 @@ namespace App\Models;
 use App\Events\ModelSavedEvent;
 use App\Events\ModelSavingEvent;
 use Illuminate\Support\Carbon;
+use Spatie\MediaLibrary\HasMedia;
 use Database\Factories\PostFactory;
+use App\Collections\PostCollection;
 use App\QueryBuilders\PostQueryBuilder;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -28,11 +31,13 @@ use Illuminate\Database\Eloquent\Model;
  * @method static PostFactory factory($count = null, $state = [])
  * @method static PostQueryBuilder query()
  */
-class Post extends Model implements GeneratesASlug, Routeable, MetaAware
+class Post extends Model implements
+    GeneratesASlug, Routeable, MetaAware, Selectable, HasMedia
 {
     use HasFactory;
     use GeneratesSlug;
     use HasRoute;
+    use InteractsWithMedia;
 
     /**
      * @var string[]
@@ -68,11 +73,6 @@ class Post extends Model implements GeneratesASlug, Routeable, MetaAware
         return $this->morphOne(Meta::class, 'describable');
     }
 
-    public function newEloquentBuilder($query): PostQueryBuilder
-    {
-        return new PostQueryBuilder($query);
-    }
-
     public function getRoute(): string
     {
         $route = '';
@@ -82,5 +82,26 @@ class Post extends Model implements GeneratesASlug, Routeable, MetaAware
         }
 
         return $route .'/'. $this->slug;
+    }
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('featured')
+            ->singleFile();
+    }
+
+    public function newEloquentBuilder($query): PostQueryBuilder
+    {
+        return new PostQueryBuilder($query);
+    }
+
+    public function newCollection(array $models = []): PostCollection
+    {
+        return new PostCollection($models);
+    }
+
+    public function getTitle(): string
+    {
+        return $this->title;
     }
 }

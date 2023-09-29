@@ -5,40 +5,12 @@
 
 @section('content')
     <div class="h-[80px] bg-white"></div>
-    <div class="w-full bg-white py-12">
-        <div class="container mx-auto h-auto">
-            <div class="h-full grid sm:grid-cols-3">
-                <div class="col-span-2 p-4">
-                    <x-featured-article title="Boost your conversion rate"
-                                        image="https://images.unsplash.com/photo-1526772662000-3f88f10405ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
-                                        date=""
-                    ></x-featured-article>
-                </div>
-                <div class="h-full p-4">
-                    <x-featured-article title="Boost your conversion rate"
-                                        image="https://images.unsplash.com/photo-1520645521318-f03a712f0e67?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"></x-featured-article>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <div class="bg-white py-12 sm:py-20">
-        <div class="mx-auto max-w-7xl px-6 lg:px-8">
-            <div class="mx-auto max-w-2xl text-center">
-                <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                    Latest articles
-                </h2>
-                <p class="mt-2 text-lg leading-8 text-gray-600">
-                    Learn how to grow your business with our expert advice.
-                </p>
-            </div>
-            <div class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-                <x-article></x-article>
-                <x-article></x-article>
-                <x-article></x-article>
-            </div>
-        </div>
-    </div>
+    @foreach ($model['page']->content as $layout)
+        @include($layout->getView(), $layout->toArray())
+    @endforeach
+
+
 
     <div class="bg-gray-50">
         <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">

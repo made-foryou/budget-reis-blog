@@ -8,6 +8,7 @@ use App\Events\ModelSavingEvent;
 use Database\Factories\PageFactory;
 use App\Collections\PageCollection;
 use Spatie\EloquentSortable\Sortable;
+use App\Casts\ContentFlexibleCast;
 use Illuminate\Database\Eloquent\Model;
 use App\QueryBuilders\PageQueryBuilder;
 use Spatie\EloquentSortable\SortableTrait;
@@ -54,7 +55,7 @@ class Page extends Model implements
     ];
 
     protected $casts = [
-        'content' => FlexibleCast::class,
+        'content' => ContentFlexibleCast::class,
         'is_visible' => 'boolean',
         'index' => 'integer',
         'created_at' => 'datetime',

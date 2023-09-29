@@ -2,10 +2,11 @@
 
 namespace App\Nova\Flexible\Layouts;
 
-use Laravel\Nova\Fields\Text;
+use App\Models\Post;
+use Laravel\Nova\Fields\Select;
 use Whitecube\NovaFlexibleContent\Layouts\Layout;
 
-class FeaturedPosts extends Layout
+class FeaturedPosts extends Layout implements ContentLayout
 {
     /**
      * The layout's unique identifier
@@ -29,8 +30,26 @@ class FeaturedPosts extends Layout
     public function fields(): array
     {
         return [
-            Text::make('Titel', 'title'),
+            Select::make('Uitgelicht nieuwsbericht', 'post_1')
+                ->options(Post::query()->get()->forSelects())
+                ->required(),
+
+            Select::make('Uitgelicht nieuwsbericht', 'post_2')
+                ->options(Post::query()->get()->forSelects())
+                ->required(),
         ];
     }
 
+    public function getView(): string
+    {
+        return 'flexible.layouts.featured-posts';
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'first' => Post::query()->findOrFail((int) $this->getAttribute('post_1')),
+            'second' => Post::query()->findOrFail((int) $this->getAttribute('post_2'))
+        ];
+    }
 }
