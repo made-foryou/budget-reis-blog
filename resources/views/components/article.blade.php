@@ -19,7 +19,7 @@
                 </a>
             </h3>
             <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">
-                {{ $post->meta->description ?? '' }}
+                {{ $post->summary ?? $post->meta->description ?? '' }}
             </p>
         </div>
         <div class="relative mt-8 flex items-center gap-x-4">
