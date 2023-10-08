@@ -9,6 +9,7 @@ use App\Models\AppModelsPost;
 use Laravel\Nova\Fields\MorphOne;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Slug;
+use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Media;
@@ -75,6 +76,9 @@ class PostResource extends Resource
 
             Media::make('Uitgelichte afbeelding', 'featured')
                 ->enableExistingMedia(),
+
+            Textarea::make('Korte inleidende samenvatting', 'summary')
+                ->nullable(),
 
             MorphOne::make(name: 'Route', attribute: 'route', resource: RouteResource::class)
                 ->onlyOnDetail(),

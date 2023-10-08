@@ -22,6 +22,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $slug
  * @property-read int $user_id
  * @property-read int|null $category_id
+ * @property string|null $summary
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property Carbon|null $deleted_at
@@ -45,6 +46,7 @@ class Post extends Model implements
     protected $fillable = [
         'title',
         'slug',
+        'summary',
     ];
 
     /**
