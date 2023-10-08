@@ -4,7 +4,9 @@ namespace App\Models;
 
 use App\Events\ModelSavedEvent;
 use App\Events\ModelSavingEvent;
+use Spatie\MediaLibrary\HasMedia;
 use App\Collections\CategoryCollection;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Carbon;
@@ -45,13 +47,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @method static CategoryFactory factory($count = null, $state = [])
  */
 class Category extends Model implements
-    GeneratesASlug, Routeable, Sortable, Visibility, Selectable, MetaAware
+    GeneratesASlug, Routeable, Sortable, Visibility, Selectable, MetaAware, HasMedia
 {
     use SoftDeletes;
     use GeneratesSlug;
     use HasFactory;
     use SortableTrait;
     use HasRoute;
+    use InteractsWithMedia;
 
     protected $fillable = [
         'name',
@@ -122,6 +125,12 @@ class Category extends Model implements
     public function getValueKey(): string
     {
         return 'name';
+    }
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('featured')
+            ->singleFile();
     }
 
     /**

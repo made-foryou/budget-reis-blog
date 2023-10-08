@@ -16,6 +16,7 @@ use Laravel\Nova\Fields\BelongsTo;
 use App\Nova\Flexible\Layouts\LatestPosts;
 use Whitecube\NovaFlexibleContent\Flexible;
 use App\Nova\Flexible\Layouts\FeaturedPosts;
+use App\Nova\Flexible\Layouts\FeaturedCategories;
 
 class PageResource extends Resource
 {
@@ -66,6 +67,7 @@ class PageResource extends Resource
             Flexible::make('Inhoud', 'content')
                 ->addLayout(FeaturedPosts::class)
                 ->addLayout(LatestPosts::class)
+                ->addLayout(FeaturedCategories::class)
                 ->fullWidth(),
 
             MorphOne::make('Route', 'route', RouteResource::class)

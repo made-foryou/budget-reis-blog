@@ -7,4 +7,5 @@ use Illuminate\Database\Eloquent\Collection;
 class CategoryCollection extends Collection
 {
     use CanBeInvisible;
+    use UsedWithinSelectFields;
 }
