@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Casts\ContentFlexibleCast;
 use App\Events\ModelSavedEvent;
 use App\Events\ModelSavingEvent;
 use Illuminate\Support\Carbon;
@@ -14,6 +15,7 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * ## Post model
@@ -23,6 +25,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read int $user_id
  * @property-read int|null $category_id
  * @property string|null $summary
+ * @property mixed $content
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property Carbon|null $deleted_at
@@ -35,6 +38,7 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model implements
     GeneratesASlug, Routeable, MetaAware, Selectable, HasMedia
 {
+    use SoftDeletes;
     use HasFactory;
     use GeneratesSlug;
     use HasRoute;
@@ -47,6 +51,17 @@ class Post extends Model implements
         'title',
         'slug',
         'summary',
+    ];
+
+    protected $attributes = [
+        'content' => '{}',
+    ];
+
+    protected $casts = [
+        'content' => ContentFlexibleCast::class,
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+        'deleted_at' => 'datetime',
     ];
 
     /**
