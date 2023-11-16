@@ -7,6 +7,7 @@ use App\Nova\Flexible\Layouts\FeaturedCategories;
 use App\Nova\Flexible\Layouts\FeaturedPosts;
 use App\Nova\Flexible\Layouts\LatestPosts;
 use App\Nova\Flexible\Layouts\Textual;
+use App\Nova\Flexible\Presets\DefaultPreset;
 use App\Nova\RouteResource;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\MorphOne;
@@ -88,11 +89,7 @@ class PostResource extends Resource
                 ->onlyOnDetail(),
 
             Flexible::make('Inhoud', 'content')
-                ->addLayout(FeaturedPosts::class)
-                ->addLayout(LatestPosts::class)
-                ->addLayout(FeaturedCategories::class)
-                ->addLayout(Textual::class)
-                ->fullWidth(),
+                ->preset(DefaultPreset::class),
         ];
     }
 

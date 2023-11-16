@@ -17,6 +17,7 @@ use App\Nova\Flexible\Layouts\LatestPosts;
 use Whitecube\NovaFlexibleContent\Flexible;
 use App\Nova\Flexible\Layouts\FeaturedPosts;
 use App\Nova\Flexible\Layouts\FeaturedCategories;
+use App\Nova\Flexible\Presets\DefaultPreset;
 use App\Nova\Flexible\Resolvers\EditorJsResolver;
 
 class PageResource extends Resource
@@ -66,11 +67,7 @@ class PageResource extends Resource
             Boolean::make('Zichtbaar?', 'is_visible'),
 
             Flexible::make('Inhoud', 'content')
-                ->addLayout(FeaturedPosts::class)
-                ->addLayout(LatestPosts::class)
-                ->addLayout(FeaturedCategories::class)
-                ->addLayout(Textual::class)
-                ->fullWidth(),
+                ->preset(DefaultPreset::class),
 
             MorphOne::make('Route', 'route', RouteResource::class)
                 ->onlyOnDetail(),
