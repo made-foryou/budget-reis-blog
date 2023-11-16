@@ -20,7 +20,7 @@ class FeaturedPosts extends Layout implements ContentLayout
      *
      * @var string
      */
-    protected $title = 'FeaturedPosts';
+    protected $title = 'Uitgelicht nieuws';
 
     /**
      * Get the fields displayed by the layout.
