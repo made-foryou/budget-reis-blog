@@ -54,6 +54,10 @@ class Page extends Model implements
         'index'
     ];
 
+    protected $attributes = [
+        'content' => '{}',
+    ];
+
     protected $casts = [
         'content' => ContentFlexibleCast::class,
         'is_visible' => 'boolean',
