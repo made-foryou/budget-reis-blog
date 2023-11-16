@@ -12,6 +12,7 @@
     ],
     "require": {
         "php": "^8.2",
+        "advoor/nova-editor-js": "^3.2",
         "coderello/laravel-nova-lang": "^2.0",
         "ebess/advanced-nova-media-library": "^4.1",
         "guzzlehttp/guzzle": "^7.2",
@@ -20,10 +21,12 @@
         "laravel/sanctum": "^3.2",
         "laravel/scout": "^10.2",
         "laravel/tinker": "^2.8",
+        "manogi/nova-tiptap": "^3.2",
         "outl1ne/nova-settings": "*",
         "outl1ne/nova-sortable": "^3.4",
         "smartians/nova-charcounted-fields": "dev-master",
-        "spatie/laravel-data": "^3.9"
+        "spatie/laravel-data": "^3.9",
+        "whitecube/nova-flexible-content": "^1.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

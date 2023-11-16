@@ -3,25 +3,20 @@
 namespace App\View\Components;
 
 use Closure;
-use App\Models\Post;
-use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use App\Models\Category as CategoryModel;
 
-/**
- * ## Featured article component
- * ---
- */
-class FeaturedArticle extends Component
+class Category extends Component
 {
     /**
-     * Constructor
+     * Create a new component instance.
      */
     public function __construct(
-        public Post $post,
+        public CategoryModel $category,
+        public bool $first = false,
     ) {
-        $this->post->load(['user']);
+        //
     }
 
     /**
@@ -29,6 +24,6 @@ class FeaturedArticle extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.featured-article');
+        return view('components.category');
     }
 }

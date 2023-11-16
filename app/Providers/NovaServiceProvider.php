@@ -33,6 +33,10 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                     ->help('Selecteer de pagina welke je als landingspagina wilt laden.'),
             ]);
         }
+
+        Nova::serving(function () {
+            Nova::script('hyperlink', public_path('editor-js-plugins/hyperlink.js'));
+        });
     }
 
     /**

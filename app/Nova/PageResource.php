@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use Exception;
 use App\Models\Page;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
@@ -11,6 +12,12 @@ use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\MorphOne;
 use Laravel\Nova\Fields\BelongsTo;
+use App\Nova\Flexible\Layouts\Textual;
+use App\Nova\Flexible\Layouts\LatestPosts;
+use Whitecube\NovaFlexibleContent\Flexible;
+use App\Nova\Flexible\Layouts\FeaturedPosts;
+use App\Nova\Flexible\Layouts\FeaturedCategories;
+use App\Nova\Flexible\Resolvers\EditorJsResolver;
 
 class PageResource extends Resource
 {
@@ -36,6 +43,9 @@ class PageResource extends Resource
         return 'Pagina';
     }
 
+    /**
+     * @throws Exception
+     */
     public function fields(Request $request): array
     {
         return [
@@ -54,6 +64,13 @@ class PageResource extends Resource
                 ->nullable(),
 
             Boolean::make('Zichtbaar?', 'is_visible'),
+
+            Flexible::make('Inhoud', 'content')
+                ->addLayout(FeaturedPosts::class)
+                ->addLayout(LatestPosts::class)
+                ->addLayout(FeaturedCategories::class)
+                ->addLayout(Textual::class)
+                ->fullWidth(),
 
             MorphOne::make('Route', 'route', RouteResource::class)
                 ->onlyOnDetail(),

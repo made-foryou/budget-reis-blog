@@ -9,8 +9,10 @@ use App\Models\AppModelsPost;
 use Laravel\Nova\Fields\MorphOne;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Slug;
+use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Ebess\AdvancedNovaMediaLibrary\Fields\Media;
 
 class PostResource extends Resource
 {
@@ -34,7 +36,9 @@ class PostResource extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'title', 'slug'
+        'id',
+        'title',
+        'slug'
     ];
 
     /**
@@ -69,6 +73,12 @@ class PostResource extends Resource
             BelongsTo::make(name: 'Auteur', attribute: 'user', resource: 'App\Nova\User'),
 
             BelongsTo::make(name: 'Categorie', attribute: 'category', resource: 'App\Nova\CategoryResource'),
+
+            Media::make('Uitgelichte afbeelding', 'featured')
+                ->enableExistingMedia(),
+
+            Textarea::make('Korte inleidende samenvatting', 'summary')
+                ->nullable(),
 
             MorphOne::make(name: 'Route', attribute: 'route', resource: RouteResource::class)
                 ->onlyOnDetail(),

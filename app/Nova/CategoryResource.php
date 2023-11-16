@@ -14,6 +14,7 @@ use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Fields\BelongsTo;
 use Outl1ne\NovaSortable\Traits\HasSortableRows;
+use Ebess\AdvancedNovaMediaLibrary\Fields\Media;
 
 class CategoryResource extends Resource
 {
@@ -42,6 +43,9 @@ class CategoryResource extends Resource
                 ->from('name')
                 ->sortable()
                 ->rules('required'),
+
+            Media::make('Uitgelichte afbeelding', 'featured')
+                ->enableExistingMedia(),
 
             Textarea::make('Omschrijving', 'description')
                 ->sortable()

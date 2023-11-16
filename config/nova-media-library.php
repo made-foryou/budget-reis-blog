@@ -2,6 +2,6 @@
 
 return [
     'default-croppable' => true,
-    'enable-existing-media' => false,
+    'enable-existing-media' => true,
     'hide-media-collections' => [],
 ];

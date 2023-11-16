@@ -8,6 +8,7 @@ use App\Events\ModelSavingEvent;
 use Database\Factories\PageFactory;
 use App\Collections\PageCollection;
 use Spatie\EloquentSortable\Sortable;
+use App\Casts\ContentFlexibleCast;
 use Illuminate\Database\Eloquent\Model;
 use App\QueryBuilders\PageQueryBuilder;
 use Spatie\EloquentSortable\SortableTrait;
@@ -15,11 +16,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Whitecube\NovaFlexibleContent\Value\FlexibleCast;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * @property string $name
  * @property string $slug
+ * @property mixed $content
  * @property boolean $is_visible
  * @property int $index
  * @property int|null $page_id
@@ -52,6 +55,7 @@ class Page extends Model implements
     ];
 
     protected $casts = [
+        'content' => ContentFlexibleCast::class,
         'is_visible' => 'boolean',
         'index' => 'integer',
         'created_at' => 'datetime',

@@ -4,7 +4,7 @@ namespace App\Collections;
 
 use Illuminate\Database\Eloquent\Collection;
 
-class CategoryCollection extends Collection
+class PostCollection extends Collection
 {
     use CanBeInvisible;
     use UsedWithinSelectFields;
