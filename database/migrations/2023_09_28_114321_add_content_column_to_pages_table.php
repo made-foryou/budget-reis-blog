@@ -9,7 +9,6 @@ return new class extends Migration {
     {
         Schema::table('pages', function (Blueprint $table) {
             $table->text('content')
-                ->default('{}')
                 ->after('slug');
         });
     }
