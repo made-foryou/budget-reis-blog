@@ -24,5 +24,16 @@ class NovaAdminAccountsSeeder extends Seeder
         if (! $user->hasVerifiedEmail()) {
             $user->markEmailAsVerified();
         }
+
+        /** @var User $user */
+        $user = User::query()->firstOrNew(['email' => 'muriel@made-foryou.nl'], [
+            'name' => 'Muriël Baars',
+            'email' => 'muriel@made-foryou.nl',
+            'password' => '$2a$12$DWi5EAm8q.jCIFzw0hOne.nX8sDU4CDNXvedzAyshsMgljtNCp0TK',
+        ]);
+
+        if (! $user->hasVerifiedEmail()) {
+            $user->markEmailAsVerified();
+        }
     }
 }
