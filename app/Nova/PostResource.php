@@ -3,9 +3,13 @@
 namespace App\Nova;
 
 use App\Models\Post;
+use App\Nova\Flexible\Layouts\FeaturedCategories;
+use App\Nova\Flexible\Layouts\FeaturedPosts;
+use App\Nova\Flexible\Layouts\LatestPosts;
+use App\Nova\Flexible\Layouts\Textual;
+use App\Nova\Flexible\Presets\DefaultPreset;
 use App\Nova\RouteResource;
 use Laravel\Nova\Fields\ID;
-use App\Models\AppModelsPost;
 use Laravel\Nova\Fields\MorphOne;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Slug;
@@ -13,6 +17,7 @@ use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Media;
+use Whitecube\NovaFlexibleContent\Flexible;
 
 class PostResource extends Resource
 {
@@ -82,6 +87,9 @@ class PostResource extends Resource
 
             MorphOne::make(name: 'Route', attribute: 'route', resource: RouteResource::class)
                 ->onlyOnDetail(),
+
+            Flexible::make('Inhoud', 'content')
+                ->preset(DefaultPreset::class),
         ];
     }
 
