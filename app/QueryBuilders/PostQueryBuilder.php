@@ -12,4 +12,13 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class PostQueryBuilder extends Builder
 {
+    public function featured()
+    {
+        return $this->where('is_featured', true);
+    }
+
+    public function notFeatured()
+    {
+        return $this->where('is_featured', false);
+    }
 }
