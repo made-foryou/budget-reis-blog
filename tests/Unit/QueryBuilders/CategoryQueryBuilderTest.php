@@ -5,7 +5,6 @@ namespace Tests\Unit\QueryBuilders;
 use Tests\TestCase;
 use App\Models\Category;
 use App\QueryBuilders\CategoryQueryBuilder;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class CategoryQueryBuilderTest extends TestCase
 {
