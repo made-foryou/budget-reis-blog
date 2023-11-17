@@ -26,6 +26,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read int|null $category_id
  * @property string|null $summary
  * @property mixed $content
+ * @property boolean $is_featured
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property Carbon|null $deleted_at
@@ -51,6 +52,8 @@ class Post extends Model implements
         'title',
         'slug',
         'summary',
+        'content',
+        'is_featured',
     ];
 
     protected $attributes = [
@@ -59,6 +62,7 @@ class Post extends Model implements
 
     protected $casts = [
         'content' => ContentFlexibleCast::class,
+        'is_featured' => 'boolean',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
         'deleted_at' => 'datetime',

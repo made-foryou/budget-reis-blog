@@ -17,6 +17,7 @@ use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Media;
+use Laravel\Nova\Fields\Boolean;
 use Whitecube\NovaFlexibleContent\Flexible;
 
 class PostResource extends Resource
@@ -81,6 +82,8 @@ class PostResource extends Resource
 
             Media::make('Uitgelichte afbeelding', 'featured')
                 ->enableExistingMedia(),
+
+            Boolean::make('Uitgelicht?', 'is_featured'),
 
             Textarea::make('Korte inleidende samenvatting', 'summary')
                 ->nullable(),
