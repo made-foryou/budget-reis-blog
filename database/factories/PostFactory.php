@@ -24,4 +24,13 @@ class PostFactory extends Factory
             'content' => '{}',
         ];
     }
+
+    public function featured(): Factory
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'is_featured' => true,
+            ];
+        });
+    }
 }
