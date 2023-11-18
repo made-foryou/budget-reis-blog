@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Casts\ContentFlexibleCast;
 use App\Events\ModelSavedEvent;
 use App\Events\ModelSavingEvent;
 use Spatie\MediaLibrary\HasMedia;
@@ -40,6 +41,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property string $name
  * @property string $slug
  * @property string $description
+ * @property array $content
  * @property boolean $is_visible
  * @property int $index
  *
@@ -60,11 +62,17 @@ class Category extends Model implements
         'name',
         'slug',
         'description',
+        'content',
         'is_visible',
         'index',
     ];
 
+    protected $attributes = [
+        'content' => '{}',
+    ];
+
     protected $casts = [
+        'content' => ContentFlexibleCast::class,
         'is_visible' => 'boolean',
         'index' => 'integer',
         'created_at' => 'datetime',
