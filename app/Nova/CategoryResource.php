@@ -60,7 +60,7 @@ class CategoryResource extends Resource
             Boolean::make('Zichtbaar?', 'is_visible')
                 ->help('Is de categorie zichtbaar op de website?'),
 
-            Flexible::make('Inhoud', 'conten')
+            Flexible::make('Inhoud', 'content')
                 ->preset(DefaultPreset::class),
 
             BelongsTo::make('Category', 'category', CategoryResource::class)

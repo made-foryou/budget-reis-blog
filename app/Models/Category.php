@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Casts\ContentFlexibleCast;
 use App\Events\ModelSavedEvent;
 use App\Events\ModelSavingEvent;
 use Spatie\MediaLibrary\HasMedia;
@@ -66,8 +67,12 @@ class Category extends Model implements
         'index',
     ];
 
-    protected $casts = [
+    protected $attributes = [
         'content' => '{}',
+    ];
+
+    protected $casts = [
+        'content' => ContentFlexibleCast::class,
         'is_visible' => 'boolean',
         'index' => 'integer',
         'created_at' => 'datetime',
