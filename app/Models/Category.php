@@ -40,6 +40,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property string $name
  * @property string $slug
  * @property string $description
+ * @property array $content
  * @property boolean $is_visible
  * @property int $index
  *
@@ -60,11 +61,13 @@ class Category extends Model implements
         'name',
         'slug',
         'description',
+        'content',
         'is_visible',
         'index',
     ];
 
     protected $casts = [
+        'content' => '{}',
         'is_visible' => 'boolean',
         'index' => 'integer',
         'created_at' => 'datetime',

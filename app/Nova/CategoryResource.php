@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use App\Models\Category;
+use App\Nova\Flexible\Presets\DefaultPreset;
 use App\Nova\RouteResource;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
@@ -15,6 +16,7 @@ use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Fields\BelongsTo;
 use Outl1ne\NovaSortable\Traits\HasSortableRows;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Media;
+use Whitecube\NovaFlexibleContent\Flexible;
 
 class CategoryResource extends Resource
 {
@@ -25,7 +27,11 @@ class CategoryResource extends Resource
     public static $title = 'name';
 
     public static $search = [
-        'id', 'name', 'description', 'slug'
+        'id',
+        'name',
+        'description',
+        'cotent',
+        'slug'
     ];
 
     public static $group = 'Blog';
@@ -53,6 +59,9 @@ class CategoryResource extends Resource
 
             Boolean::make('Zichtbaar?', 'is_visible')
                 ->help('Is de categorie zichtbaar op de website?'),
+
+            Flexible::make('Inhoud', 'conten')
+                ->preset(DefaultPreset::class),
 
             BelongsTo::make('Category', 'category', CategoryResource::class)
                 ->nullable(),
