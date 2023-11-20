@@ -9,9 +9,11 @@ use App\Nova\Dashboards\Main;
 use Laravel\Nova\Fields\Select;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Nova;
 use Outl1ne\NovaSettings\NovaSettings;
 use Laravel\Nova\NovaApplicationServiceProvider;
+use Laravel\Nova\Panel;
 
 /**
  * ## Nova service provider
@@ -35,6 +37,12 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
 
                 Boolean::make('Nieuwsbrief?', 'use_newsletter')
                     ->help('Wil je gebruik maken van een nieuwsbrief?'),
+
+                Panel::make('Social Media', [
+                    Text::make('Instagram', 'social_instagram')
+                        ->rules(['nullable', 'string'])
+                        ->help('De link van je instagram account.'),
+                ])
             ]);
         }
 
