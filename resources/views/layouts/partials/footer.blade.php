@@ -47,6 +47,8 @@
         </div>
       </div>
     </div>
+
+    @if (nova_get_setting('use_newsletter'))
     <div class="mt-16 border-t border-gray-900/10 pt-8 sm:mt-20 lg:mt-24 lg:flex lg:items-center lg:justify-between">
       <div>
         <h3 class="text-sm font-semibold leading-6 text-gray-900">Subscribe to our newsletter</h3>
@@ -60,6 +62,8 @@
         </div>
       </form>
     </div>
+    @endif
+
     <div class="mt-8 border-t border-gray-900/10 pt-8 md:flex md:items-center md:justify-between">
       <div class="flex space-x-6 md:order-2">
         <a href="#" class="text-gray-400 hover:text-gray-500">
