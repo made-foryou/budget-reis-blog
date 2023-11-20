@@ -8,9 +8,12 @@ use App\Models\Page;
 use App\Nova\Dashboards\Main;
 use Laravel\Nova\Fields\Select;
 use Illuminate\Support\Facades\Gate;
+use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Nova;
 use Outl1ne\NovaSettings\NovaSettings;
 use Laravel\Nova\NovaApplicationServiceProvider;
+use Laravel\Nova\Panel;
 
 /**
  * ## Nova service provider
@@ -31,6 +34,15 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                     ->options(Page::query()->get()->forSelects())
                     ->rules(['required', 'exists:pages,id'])
                     ->help('Selecteer de pagina welke je als landingspagina wilt laden.'),
+
+                Boolean::make('Nieuwsbrief?', 'use_newsletter')
+                    ->help('Wil je gebruik maken van een nieuwsbrief?'),
+
+                Panel::make('Social Media', [
+                    Text::make('Instagram', 'social_instagram')
+                        ->rules(['nullable', 'string'])
+                        ->help('De link van je instagram account.'),
+                ])
             ]);
         }
 
@@ -58,7 +70,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function gate(): void
     {
         Gate::define('viewNova', function ($user) {
-            return $user->email == 'menno@made-foryou.nl' 
+            return $user->email == 'menno@made-foryou.nl'
                 || $user->email === 'muriel@made-foryou.nl';
         });
     }
